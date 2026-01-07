@@ -1,0 +1,223 @@
+/* Import Geist font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom font declaration with multiple formats for better compatibility */
+@font-face {
+  font-family: 'Burma Court Playgroup';
+  src: url('/fonts/BurmaCourtPlaygroup-Regular.woff2') format('woff2'),
+       url('/fonts/BurmaCourtPlaygroup-Regular.ttf') format('truetype'),
+       url('/fonts/BurmaCourtPlaygroup-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* CSS Custom Properties from Design System */
+:root {
+  /* Colors */
+  --primary-50: #FEF2EE;
+  --primary-100: #FDE0D7;
+  --primary-200: #FBCEA9;
+  --primary-300: #F9A481;
+  --primary-500: #F65627;
+  --primary-600: #D6451A;
+  --primary-700: #B02E07;
+  --primary-900: #7A220B;
+  
+  --secondary-50: #F1F6F2;
+  --secondary-100: #DEEAE1;
+  --secondary-200: #C2D8C8;
+  --secondary-500: #78A681;
+  --secondary-600: #496F51;
+  --secondary-700: #496F51;
+  --secondary-900: #2C4231;
+  
+  --accent-500: #F6BE28;
+  --accent-600: #DDA310;
+  --accent-red: #6B1C18;
+  
+  --neutral-50: #FFFFFF;
+  --neutral-100: #F7F7F6;
+  --neutral-200: #EDEBE8;
+  --neutral-300: #DFDCD8;
+  --neutral-400: #D0CBC5;
+  --neutral-500: #888681;
+  --neutral-600: #45403B;
+  --neutral-700: #4A4A4A;
+  --neutral-800: #282522;
+  --neutral-900: #1A1A1A;
+  
+  --semantic-success: #76A681;
+  --semantic-warning: #F8BC24;
+  --semantic-error: #EF4444;
+  --semantic-info: #3B82F6;
+  
+  /* Typography */
+  --font-display: 'Burma Court Playgroup', cursive;
+  --font-body: 'Geist', sans-serif;
+  
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  
+  /* Border Radius */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+}
+
+/* Base styles using design tokens */
+@layer base {
+  html {
+    font-family: var(--font-body);
+  }
+  
+  body {
+    background-color: var(--neutral-200);
+    color: var(--neutral-600);
+    font-size: 16px;
+    line-height: 21px;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--neutral-800);
+    font-family: 'Burma Court Playgroup', cursive !important;
+    font-weight: 400;
+  }
+  
+  h1 {
+    font-size: 48px;
+    line-height: 47px;
+  }
+  
+  h2 {
+    font-size: 32px;
+    line-height: 38px;
+  }
+  
+  h3 {
+    font-size: 30px;
+    line-height: 38px;
+  }
+  
+  h4 {
+    font-size: 24px;
+    line-height: 31px;
+  }
+}
+
+/* Component layer for reusable classes */
+@layer components {
+  /* Typography styles */
+  .section-heading {
+    @apply font-display text-36 leading-47 text-neutral-800;
+    font-family: 'Burma Court Playgroup', cursive !important;
+  }
+  
+  .hero-heading {
+    @apply font-display text-48 leading-47 text-neutral-800;
+    font-family: 'Burma Court Playgroup', cursive !important;
+  }
+  
+  /* Debug class to test font loading */
+  .test-font {
+    font-family: 'Burma Court Playgroup', cursive !important;
+    font-size: 24px;
+    color: red;
+  }
+  
+  .body-text {
+    @apply font-body text-16 leading-21 text-neutral-600;
+  }
+  
+  .small-text {
+    @apply font-body text-14 leading-21 text-neutral-500;
+  }
+  
+  .large-text {
+    @apply font-body text-18 leading-26 text-neutral-600;
+  }
+  
+  .button-text {
+    @apply font-body text-20 leading-26 font-medium;
+  }
+  
+  .caption-text {
+    @apply font-body text-12 leading-21 text-neutral-500;
+  }
+  
+  /* Navigation styles */
+  .navigation-link {
+    @apply font-body text-16 leading-21 text-neutral-800 transition-colors duration-normal hover:text-primary-500 active:text-primary-700;
+  }
+  
+  /* Button variants */
+  .btn-primary {
+    @apply bg-primary-500 text-neutral-50 px-6 py-5 rounded-sm font-medium text-20 leading-26 transition-colors duration-normal hover:bg-primary-600 active:bg-primary-700;
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary-500 text-neutral-50 px-6 py-5 rounded-sm font-medium text-20 leading-26 transition-colors duration-normal hover:bg-secondary-600 active:bg-secondary-700;
+  }
+  
+  .btn-outline {
+    @apply border-2 border-primary-500 text-primary-500 bg-transparent px-6 py-5 rounded-sm font-medium text-20 leading-26 transition-colors duration-normal hover:bg-primary-500 hover:text-neutral-50;
+  }
+  
+  /* Card styles */
+  .card {
+    @apply bg-neutral-50 rounded-md p-6 shadow-sm border border-neutral-200;
+  }
+  
+  .card-interactive {
+    @apply card transition-all duration-normal hover:-translate-y-1 hover:shadow-md;
+  }
+  
+  .testimonial-card {
+    @apply card w-testimonial h-testimonial flex flex-col gap-6;
+  }
+  
+  /* Input styles */
+  .input-field {
+    @apply h-input px-3 border border-neutral-50 bg-neutral-50 font-body text-16 leading-21 transition-colors duration-normal hover:border-neutral-400 focus:border-neutral-600 focus:outline-none;
+  }
+  
+  /* Utility classes */
+  .brand-rotation {
+    @apply rotate-2;
+  }
+  
+  .section-padding {
+    @apply py-section px-grid-margin-mobile md:px-grid-margin-tablet lg:px-grid-margin-desktop;
+  }
+  
+  .section-padding-mobile {
+    @apply py-section-mobile px-grid-margin-mobile md:px-grid-margin-tablet lg:px-grid-margin-desktop;
+  }
+}
+
+/* Utility layer for additional utilities */
+@layer utilities {
+  .text-display {
+    font-family: var(--font-display);
+  }
+  
+  .text-body {
+    font-family: var(--font-body);
+  }
+}

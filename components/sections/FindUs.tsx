@@ -70,7 +70,7 @@ const FindUs: React.FC = () => {
           </div>
         </div>
 
-        <div className="col-span-4 md:col-span-8 lg:col-start-10 lg:col-span-3 flex flex-col items-center lg:items-start mt-12 lg:mt-0 lg:self-end">
+        <div className="col-span-4 md:col-span-4 lg:col-start-10 lg:col-span-3 flex flex-col items-center lg:items-start mt-12 lg:mt-0 lg:self-end">
           <a 
             href={googleMapsUrl}
             target="_blank"

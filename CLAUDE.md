@@ -1,0 +1,2 @@
+- This is a Vite project
+- always use @burma-court-playgroup-design-system.json @tailwind.config.ts to generate new components

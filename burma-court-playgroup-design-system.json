@@ -1,0 +1,1077 @@
+{
+  "meta": {
+    "name": "Burma Court Playgroup Design System",
+    "version": "1.0.0",
+    "description": "Complete design system for Burma Court Playgroup website",
+    "lastUpdated": "2025-12-30",
+    "technology": {
+      "framework": "Next.js 14+ (App Router)",
+      "language": "TypeScript",
+      "styling": "Tailwind CSS",
+      "icons": "Lucide React",
+      "imageOptimization": "Next.js Image component"
+    }
+  },
+
+  "tokens": {
+    "colors": {
+      "primary": {
+        "50": "#FEF2EE",
+        "100": "#FDE0D7",
+        "200": "#FBCEA9",
+        "300": "#F9A481",
+        "500": "#F65627",
+        "600": "#D6451A",
+        "700": "#B02E07",
+        "900": "#7A220B",
+        "description": "Main orange action color - used for CTAs, links, emphasis"
+      },
+      "secondary": {
+        "50": "#F1F6F2",
+        "100": "#DEEAE1",
+        "200": "#C2D8C8",
+        "500": "#78A681",
+        "600": "#496F51",
+        "700": "#496F51",
+        "900": "#2C4231",
+        "description": "Green section color - used for backgrounds, sections"
+      },
+      "accent": {
+        "500": "#F6BE28",
+        "600": "#DDA310",
+        "red": "#6B1C18",
+        "description": "Yellow accent for illustrations and highlights, dark red for Ages illustration"
+      },
+      "neutral": {
+        "50": "#FFFFFF",
+        "100": "#F7F7F6",
+        "200": "#EDEBE8",
+        "300": "#DFDCD8",
+        "400": "#D0CBC5",
+        "500": "#888681",
+        "600": "#45403B",
+        "700": "#4A4A4A",
+        "800": "#282522",
+        "900": "#1A1A1A",
+        "description": "Warm beige/brown neutrals - 200 is main background, 400 is navigation BG, 600 is body text, 800 is headings"
+      },
+      "semantic": {
+        "success": "#76A681",
+        "warning": "#F8BC24",
+        "error": "#EF4444",
+        "info": "#3B82F6"
+      }
+    },
+
+    "typography": {
+      "fontFamilies": {
+        "display": {
+          "value": "'Burma Court Playgroup', 'Geist', cursive",
+          "fallback": "cursive",
+          "usage": "Custom handwritten font for logo, headings, and display text",
+          "files": ["../Font/Custom font"]
+        },
+        "body": {
+          "value": "'Geist', sans-serif",
+          "fallback": "sans-serif",
+          "usage": "Clean modern font for body text and UI elements",
+          "source": "Google Fonts",
+          "weights": [300, 400, 500, 600, 700]
+        }
+      },
+      "fontSizes": {
+        "12": { "value": "12px", "rem": "0.75rem", "usage": "Captions, small labels" },
+        "14": { "value": "14px", "rem": "0.875rem", "usage": "Small body text, helper text" },
+        "16": { "value": "16px", "rem": "1rem", "usage": "Body text, navigation links" },
+        "18": { "value": "18px", "rem": "1.125rem", "usage": "Large body text" },
+        "20": { "value": "20px", "rem": "1.25rem", "usage": "Buttons, emphasized text" },
+        "24": { "value": "24px", "rem": "1.5rem", "usage": "Small headings (h4)" },
+        "30": { "value": "30px", "rem": "1.875rem", "usage": "Medium headings (h3)" },
+        "32": { "value": "32px", "rem": "2rem", "usage": "Large headings (h2)" },
+        "36": { "value": "36px", "rem": "2.25rem", "usage": "Section headings" },
+        "48": { "value": "48px", "rem": "3rem", "usage": "Hero headings (h1)" }
+      },
+      "fontWeights": {
+        "light": { "value": 300, "usage": "Light text, subtle emphasis" },
+        "regular": { "value": 400, "usage": "Body text, default weight" },
+        "medium": { "value": 500, "usage": "Buttons, emphasized text, navigation" },
+        "semibold": { "value": 600, "usage": "Subheadings, labels" },
+        "bold": { "value": 700, "usage": "Strong emphasis, headings" }
+      },
+      "lineHeights": {
+        "21": { "value": "21px", "for": "16px text (navigation, body)" },
+        "26": { "value": "26px", "for": "20px text (buttons)" },
+        "31": { "value": "31px", "for": "24px text (small headings)" },
+        "38": { "value": "38px", "for": "32px text (large headings, navbar CTA)" },
+        "40": { "value": "40px", "for": "Alternative for headings" },
+        "47": { "value": "47px", "for": "36px-48px text (hero headings)" }
+      }
+    },
+
+    "spacing": {
+      "1": { "value": "4px", "rem": "0.25rem", "usage": "Tiny spacing - gaps between icons" },
+      "2": { "value": "8px", "rem": "0.5rem", "usage": "Extra small - tight spacing" },
+      "3": { "value": "12px", "rem": "0.75rem", "usage": "Small - compact layouts" },
+      "4": { "value": "16px", "rem": "1rem", "usage": "Medium - standard spacing" },
+      "5": { "value": "20px", "rem": "1.25rem", "usage": "Medium-large - button vertical padding" },
+      "6": { "value": "24px", "rem": "1.5rem", "usage": "Large - card padding, button horizontal padding" },
+      "8": { "value": "32px", "rem": "2rem", "usage": "Extra large - section spacing" },
+      "12": { "value": "48px", "rem": "3rem", "usage": "2X large - major section gaps" },
+      "16": { "value": "64px", "rem": "4rem", "usage": "3X large - hero spacing" }
+    },
+
+    "borderRadius": {
+      "xs": { "value": "2px", "usage": "Checkboxes, small UI elements" },
+      "sm": { "value": "4px", "usage": "Buttons, inputs, badges" },
+      "md": { "value": "8px", "usage": "Standard for cards, testimonials" },
+      "lg": { "value": "12px", "usage": "Large cards" },
+      "xl": { "value": "24px", "usage": "Extra large elements" },
+      "full": { "value": "9999px", "usage": "Pills, toggles, circles" }
+    },
+
+    "shadows": {
+      "sm": { "value": "0 1px 2px 0 rgb(0 0 0 / 0.05)", "usage": "Subtle depth" },
+      "md": { "value": "0 4px 6px -1px rgb(0 0 0 / 0.1)", "usage": "Card hover states" },
+      "lg": { "value": "0 10px 15px -3px rgb(0 0 0 / 0.1)", "usage": "Elevated elements" },
+      "xl": { "value": "0 20px 25px -5px rgb(0 0 0 / 0.1)", "usage": "Modals, drawers" },
+      "inner": { "value": "inset 0 2px 4px 0 rgb(0 0 0 / 0.05)", "usage": "Inputs, inset elements" }
+    },
+
+    "breakpoints": {
+      "sm": { "value": "640px", "usage": "Small devices" },
+      "md": { "value": "768px", "usage": "Tablets" },
+      "lg": { "value": "1024px", "usage": "Desktops" },
+      "xl": { "value": "1280px", "usage": "Large desktops" },
+      "2xl": { "value": "1440px", "usage": "Max width for content" }
+    },
+
+    "grid": {
+      "desktop": {
+        "maxWidth": "1440px",
+        "columns": 12,
+        "gutter": "16px",
+        "margin": "80px"
+      },
+      "tablet": {
+        "columns": 8,
+        "gutter": "16px",
+        "margin": "48px"
+      },
+      "mobile": {
+        "columns": 4,
+        "gutter": "16px",
+        "margin": "24px"
+      },
+      "keyInfo": {
+        "columns": 3,
+        "gutter": "180px",
+        "note": "Special 3-column grid for Key Info section only"
+      }
+    }
+  },
+
+  "components": {
+    "atoms": [
+      {
+        "name": "Button",
+        "category": "atoms",
+        "file": "components/atoms/Button.tsx",
+        "variants": ["primary", "secondary", "outline", "ghost", "destructive"],
+        "sizes": ["sm", "md", "lg"],
+        "states": ["default", "hover", "active", "disabled"],
+        "specifications": {
+          "default": {
+            "fontFamily": "var(--font-body)",
+            "fontWeight": 500,
+            "fontSize": "20px",
+            "lineHeight": "26px",
+            "padding": "20px 24px",
+            "borderRadius": "4px",
+            "gap": "8px"
+          },
+          "sm": {
+            "fontSize": "14px",
+            "lineHeight": "21px",
+            "padding": "6px 12px"
+          },
+          "md": {
+            "fontSize": "16px",
+            "lineHeight": "21px",
+            "padding": "10px 20px"
+          },
+          "lg": {
+            "fontSize": "20px",
+            "lineHeight": "26px",
+            "padding": "20px 24px"
+          },
+          "disabled": {
+            "background": "#DFDCD8",
+            "color": "#45403B",
+            "cursor": "not-allowed",
+            "hoverBackground": "#D0CBC5"
+          }
+        },
+        "props": {
+          "variant": "primary | secondary | outline | ghost | destructive",
+          "size": "sm | md | lg",
+          "disabled": "boolean",
+          "children": "React.ReactNode",
+          "onClick": "() => void"
+        },
+        "lucideIcons": "Can include icons from lucide-react"
+      },
+      {
+        "name": "Input",
+        "category": "atoms",
+        "file": "components/atoms/Input.tsx",
+        "types": ["text", "email", "password", "search", "number", "tel"],
+        "states": ["default", "hover", "focus", "disabled", "error"],
+        "specifications": {
+          "height": "48px",
+          "padding": "12px",
+          "border": "1px solid white",
+          "borderRadius": "0",
+          "background": "white",
+          "fontSize": "16px",
+          "fontFamily": "var(--font-body)",
+          "hoverBorder": "#D0CBC5",
+          "focusBorder": "#45403B",
+          "disabledBackground": "#DFDCD8",
+          "disabledColor": "#45403B"
+        },
+        "withIcons": {
+          "iconPosition": "left | right",
+          "iconSize": "20px",
+          "iconColor": "#888681",
+          "lucideIcons": ["Mail", "Search", "Eye", "EyeOff"]
+        },
+        "props": {
+          "type": "text | email | password | search | number | tel",
+          "placeholder": "string",
+          "value": "string",
+          "onChange": "(e: ChangeEvent<HTMLInputElement>) => void",
+          "disabled": "boolean",
+          "error": "boolean",
+          "iconLeft": "LucideIcon",
+          "iconRight": "LucideIcon"
+        }
+      },
+      {
+        "name": "Badge",
+        "category": "atoms",
+        "file": "components/atoms/Badge.tsx",
+        "variants": ["default", "success", "warning", "error", "info"],
+        "removable": true,
+        "specifications": {
+          "padding": "4px 12px",
+          "borderRadius": "4px",
+          "fontSize": "12px",
+          "fontWeight": 500,
+          "display": "inline-flex",
+          "alignItems": "center",
+          "gap": "4px"
+        },
+        "colors": {
+          "default": { "bg": "#EDEBE8", "text": "#45403B" },
+          "success": { "bg": "#DEEAE1", "text": "#496F51" },
+          "warning": { "bg": "#FEF2EE", "text": "#B02E07" },
+          "error": { "bg": "#FEF2F2", "text": "#EF4444" },
+          "info": { "bg": "#EFF6FF", "text": "#3B82F6" }
+        },
+        "props": {
+          "variant": "default | success | warning | error | info",
+          "removable": "boolean",
+          "onRemove": "() => void",
+          "children": "React.ReactNode"
+        }
+      },
+      {
+        "name": "Checkbox",
+        "category": "atoms",
+        "file": "components/atoms/Checkbox.tsx",
+        "specifications": {
+          "size": "20px",
+          "borderRadius": "2px",
+          "border": "2px solid #D0CBC5",
+          "checkedBackground": "#F65627",
+          "checkedBorder": "#F65627",
+          "checkIcon": "Lucide Check icon"
+        },
+        "props": {
+          "checked": "boolean",
+          "onChange": "(checked: boolean) => void",
+          "label": "string",
+          "disabled": "boolean"
+        }
+      },
+      {
+        "name": "Radio",
+        "category": "atoms",
+        "file": "components/atoms/Radio.tsx",
+        "specifications": {
+          "size": "20px",
+          "borderRadius": "50%",
+          "border": "2px solid #D0CBC5",
+          "selectedBackground": "#F65627",
+          "innerDot": "8px circle"
+        },
+        "props": {
+          "checked": "boolean",
+          "onChange": "(value: string) => void",
+          "label": "string",
+          "value": "string",
+          "name": "string",
+          "disabled": "boolean"
+        }
+      },
+      {
+        "name": "Toggle",
+        "category": "atoms",
+        "file": "components/atoms/Toggle.tsx",
+        "specifications": {
+          "width": "44px",
+          "height": "24px",
+          "borderRadius": "9999px",
+          "backgroundColor": "#EDEBE8",
+          "activeBackground": "#F65627",
+          "dotSize": "20px",
+          "dotOffset": "2px"
+        },
+        "props": {
+          "checked": "boolean",
+          "onChange": "(checked: boolean) => void",
+          "disabled": "boolean"
+        }
+      },
+      {
+        "name": "Slider",
+        "category": "atoms",
+        "file": "components/atoms/Slider.tsx",
+        "specifications": {
+          "height": "8px",
+          "borderRadius": "4px",
+          "track": "#FFFFFF",
+          "fill": "#F65627",
+          "thumb": {
+            "size": "20px",
+            "background": "#F65627",
+            "border": "2px solid white",
+            "borderRadius": "50%"
+          },
+          "dynamicFill": "Updates gradient as slider moves (see JavaScript implementation)"
+        },
+        "props": {
+          "min": "number",
+          "max": "number",
+          "value": "number",
+          "onChange": "(value: number) => void",
+          "step": "number",
+          "disabled": "boolean"
+        }
+      },
+      {
+        "name": "Select",
+        "category": "atoms",
+        "file": "components/atoms/Select.tsx",
+        "type": "Custom dropdown (not native)",
+        "specifications": {
+          "height": "48px",
+          "padding": "12px 16px",
+          "border": "1px solid white",
+          "borderRadius": "0",
+          "background": "white",
+          "chevronIcon": "Lucide ChevronDown",
+          "dropdown": {
+            "background": "white",
+            "borderRadius": "4px",
+            "boxShadow": "0 4px 6px -1px rgb(0 0 0 / 0.1)",
+            "maxHeight": "240px",
+            "overflowY": "auto"
+          },
+          "option": {
+            "padding": "12px 16px",
+            "hoverBackground": "#FBCEA9",
+            "hoverColor": "#B02E07",
+            "selectedBackground": "#FCFCFC",
+            "selectedColor": "#F65627",
+            "checkIcon": "Lucide Check (shown when selected)"
+          }
+        },
+        "props": {
+          "options": "Array<{ value: string, label: string }>",
+          "value": "string",
+          "onChange": "(value: string) => void",
+          "placeholder": "string",
+          "disabled": "boolean"
+        }
+      }
+    ],
+
+    "molecules": [
+      {
+        "name": "SearchBar",
+        "category": "molecules",
+        "file": "components/molecules/SearchBar.tsx",
+        "description": "Input field with search icon",
+        "specifications": {
+          "iconPosition": "left",
+          "icon": "Lucide Search",
+          "placeholder": "Search...",
+          "clearButton": "Optional X button when input has value"
+        },
+        "props": {
+          "value": "string",
+          "onChange": "(value: string) => void",
+          "onClear": "() => void",
+          "placeholder": "string"
+        }
+      },
+      {
+        "name": "Card",
+        "category": "molecules",
+        "file": "components/molecules/Card.tsx",
+        "variants": ["default", "interactive", "testimonial"],
+        "specifications": {
+          "background": "white",
+          "borderRadius": "8px",
+          "padding": "24px",
+          "boxShadow": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+          "border": "1px solid rgba(0,0,0,0.03)",
+          "interactive": {
+            "transition": "all 0.2s",
+            "hoverTransform": "translateY(-4px)",
+            "hoverShadow": "0 4px 6px -1px rgb(0 0 0 / 0.1)"
+          },
+          "testimonial": {
+            "width": "524px",
+            "height": "339px",
+            "padding": "24px",
+            "gap": "24px",
+            "display": "flex",
+            "flexDirection": "column"
+          }
+        },
+        "props": {
+          "variant": "default | interactive | testimonial",
+          "children": "React.ReactNode",
+          "onClick": "() => void"
+        }
+      },
+      {
+        "name": "TestimonialCard",
+        "category": "molecules",
+        "file": "components/molecules/TestimonialCard.tsx",
+        "specifications": {
+          "width": "524px",
+          "height": "339px",
+          "padding": "24px",
+          "gap": "24px",
+          "display": "flex",
+          "flexDirection": "column",
+          "starRating": {
+            "count": 5,
+            "icon": "Custom star SVG (26x24px)",
+            "color": "#F6BE28",
+            "gap": "8px"
+          },
+          "text": {
+            "fontFamily": "Geist",
+            "fontSize": "16px",
+            "lineHeight": "21px",
+            "color": "#45403B",
+            "flex": 1
+          },
+          "author": {
+            "alignItems": "flex-end",
+            "avatar": {
+              "width": "40px",
+              "height": "48px",
+              "borderRadius": "2px",
+              "background": "#EDEBE8"
+            },
+            "name": {
+              "fontSize": "12px",
+              "lineHeight": "16px",
+              "textAlign": "right"
+            }
+          }
+        },
+        "props": {
+          "rating": "number (1-5)",
+          "testimonial": "string",
+          "authorName": "string",
+          "authorAvatar": "string (optional)"
+        }
+      },
+      {
+        "name": "StatCard",
+        "category": "molecules",
+        "file": "components/molecules/StatCard.tsx",
+        "specifications": {
+          "display": "flex",
+          "alignItems": "center",
+          "justifyContent": "space-between",
+          "padding": "16px",
+          "label": {
+            "fontSize": "12px",
+            "textTransform": "uppercase",
+            "color": "#888681",
+            "fontWeight": 700
+          },
+          "value": {
+            "fontSize": "32px",
+            "fontWeight": 700,
+            "margin": "4px 0"
+          },
+          "icon": {
+            "width": "40px",
+            "height": "40px",
+            "background": "#FEF2EE",
+            "borderRadius": "50%",
+            "padding": "8px",
+            "color": "#D6451A"
+          },
+          "trend": {
+            "fontSize": "14px",
+            "color": "#76A681",
+            "display": "flex",
+            "alignItems": "center",
+            "gap": "4px",
+            "icon": "Lucide TrendingUp"
+          }
+        },
+        "props": {
+          "label": "string",
+          "value": "string | number",
+          "icon": "LucideIcon",
+          "trend": "string (optional)",
+          "trendDirection": "up | down"
+        }
+      },
+      {
+        "name": "NavigationLink",
+        "category": "molecules",
+        "file": "components/molecules/NavigationLink.tsx",
+        "specifications": {
+          "fontSize": "16px",
+          "lineHeight": "21px",
+          "fontWeight": 400,
+          "fontFamily": "Geist",
+          "defaultColor": "#282522",
+          "hoverColor": "#F65627",
+          "activeColor": "#B02E07",
+          "transition": "color 0.2s"
+        },
+        "props": {
+          "href": "string",
+          "children": "React.ReactNode",
+          "active": "boolean"
+        }
+      },
+      {
+        "name": "Breadcrumb",
+        "category": "molecules",
+        "file": "components/molecules/Breadcrumb.tsx",
+        "specifications": {
+          "fontSize": "14px",
+          "color": "#888681",
+          "separator": "/",
+          "separatorMargin": "0 4px",
+          "currentColor": "#1A1A1A"
+        },
+        "props": {
+          "items": "Array<{ label: string, href?: string }>",
+          "separator": "string"
+        }
+      }
+    ],
+
+    "organisms": [
+      {
+        "name": "Navigation",
+        "category": "organisms",
+        "file": "components/organisms/Navigation.tsx",
+        "specifications": {
+          "desktop": {
+            "width": "1440px",
+            "height": "128px",
+            "contentHeight": "96px",
+            "paddingVertical": "16px",
+            "background": "#D0CBC5",
+            "display": "flex",
+            "alignItems": "center",
+            "justifyContent": "center",
+            "logo": {
+              "position": "absolute",
+              "left": "50%",
+              "top": "50%",
+              "transform": "translate(-50%, -50%)",
+              "width": "32px",
+              "height": "48px"
+            },
+            "leftLink": {
+              "position": "absolute",
+              "left": "80px",
+              "content": "About"
+            },
+            "rightLink": {
+              "position": "absolute",
+              "right": "202px",
+              "content": "A day at BCP"
+            },
+            "ctaButton": {
+              "position": "absolute",
+              "right": "80px",
+              "padding": "8px 16px",
+              "width": "122px",
+              "height": "43px",
+              "fontSize": "16px",
+              "lineHeight": "38px"
+            }
+          },
+          "tablet": {
+            "height": "96px",
+            "contentHeight": "64px",
+            "paddingVertical": "16px",
+            "background": "#D0CBC5",
+            "display": "flex",
+            "alignItems": "center",
+            "justifyContent": "center"
+          },
+          "mobile": {
+            "height": "72px",
+            "contentHeight": "40px",
+            "paddingVertical": "16px",
+            "padding": "0 16px",
+            "hamburgerMenu": true,
+            "mobileMenuOverlay": true
+          },
+          "states": {
+            "link": {
+              "default": "#282522",
+              "hover": "#F65627",
+              "active": "#B02E07"
+            },
+            "ctaButton": {
+              "default": "#F65627",
+              "hover": "#D6451A",
+              "active": "#B02E07"
+            }
+          }
+        },
+        "props": {
+          "links": "Array<{ label: string, href: string, active?: boolean }>",
+          "ctaText": "string",
+          "ctaHref": "string",
+          "logo": "React.ReactNode"
+        }
+      },
+      {
+        "name": "Footer",
+        "category": "organisms",
+        "file": "components/organisms/Footer.tsx",
+        "specifications": {
+          "background": "#EDEBE8",
+          "padding": "48px 80px",
+          "sections": ["logo", "links", "copyright"],
+          "logo": {
+            "width": "48px",
+            "height": "72px",
+            "marginBottom": "24px"
+          },
+          "links": {
+            "display": "flex",
+            "gap": "24px",
+            "fontSize": "14px"
+          },
+          "copyright": {
+            "fontSize": "12px",
+            "color": "#888681",
+            "marginTop": "24px"
+          }
+        },
+        "props": {
+          "links": "Array<{ label: string, href: string }>",
+          "copyrightText": "string"
+        }
+      },
+      {
+        "name": "TestimonialGrid",
+        "category": "organisms",
+        "file": "components/organisms/TestimonialGrid.tsx",
+        "specifications": {
+          "display": "grid",
+          "gridTemplateColumns": "repeat(auto-fit, minmax(524px, 1fr))",
+          "gap": "24px",
+          "overflowX": "auto",
+          "scrollBehavior": "smooth",
+          "mobile": {
+            "display": "flex",
+            "overflowX": "scroll",
+            "scrollSnapType": "x mandatory"
+          }
+        },
+        "props": {
+          "testimonials": "Array<{ rating: number, text: string, author: string, avatar?: string }>"
+        }
+      },
+      {
+        "name": "Accordion",
+        "category": "organisms",
+        "file": "components/organisms/Accordion.tsx",
+        "specifications": {
+          "item": {
+            "borderBottom": "1px solid #EDEBE8",
+            "padding": "16px 0"
+          },
+          "header": {
+            "display": "flex",
+            "justifyContent": "space-between",
+            "alignItems": "center",
+            "cursor": "pointer",
+            "fontSize": "16px",
+            "fontWeight": 500
+          },
+          "icon": {
+            "transition": "transform 0.3s",
+            "expandedRotation": "rotate(45deg)"
+          },
+          "body": {
+            "maxHeight": 0,
+            "overflow": "hidden",
+            "transition": "max-height 0.3s ease",
+            "expandedMaxHeight": "500px",
+            "padding": "16px 0"
+          }
+        },
+        "props": {
+          "items": "Array<{ question: string, answer: string }>",
+          "allowMultiple": "boolean"
+        }
+      },
+      {
+        "name": "Tabs",
+        "category": "organisms",
+        "file": "components/organisms/Tabs.tsx",
+        "specifications": {
+          "tabList": {
+            "display": "flex",
+            "borderBottom": "2px solid #EDEBE8",
+            "gap": "4px"
+          },
+          "tab": {
+            "padding": "12px 16px",
+            "background": "transparent",
+            "border": "none",
+            "fontSize": "14px",
+            "fontWeight": 500,
+            "color": "#888681",
+            "cursor": "pointer",
+            "activeColor": "#F65627",
+            "activeBorderBottom": "2px solid #F65627"
+          },
+          "tabPanel": {
+            "padding": "16px 0"
+          }
+        },
+        "props": {
+          "tabs": "Array<{ label: string, content: React.ReactNode }>",
+          "defaultTab": "number"
+        }
+      }
+    ]
+  },
+
+  "sections": {
+    "hero": {
+      "name": "Hero Section",
+      "file": "components/sections/Hero.tsx",
+      "layout": {
+        "background": "#EDEBE8",
+        "padding": "64px 80px",
+        "display": "flex",
+        "flexDirection": "column",
+        "alignItems": "center",
+        "textAlign": "center"
+      },
+      "elements": {
+        "title": {
+          "component": "Burma Court Playgroup hand-drawn SVG",
+          "dimensions": "455 × 339px",
+          "marginBottom": "16px"
+        },
+        "tagline": {
+          "text": "Learning through play",
+          "fontSize": "18px",
+          "color": "#45403B",
+          "marginBottom": "48px"
+        },
+        "photoCollage": {
+          "layout": "CSS Grid / Masonry",
+          "images": 6,
+          "transform": "rotate(2deg)",
+          "borderRadius": "0",
+          "gap": "16px",
+          "note": "Images have playful 2-degree rotation - signature brand element"
+        },
+        "description": {
+          "fontSize": "16px",
+          "lineHeight": "21px",
+          "maxWidth": "600px",
+          "marginTop": "48px",
+          "marginBottom": "24px"
+        },
+        "cta": {
+          "variant": "primary",
+          "size": "lg",
+          "text": "Get in touch"
+        }
+      }
+    },
+    "keyInfo": {
+      "name": "Key Info Section",
+      "file": "components/sections/KeyInfo.tsx",
+      "layout": {
+        "background": "#78A681",
+        "padding": "64px 80px",
+        "gridColumns": 4,
+        "gap": "32px"
+      },
+      "cards": [
+        {
+          "title": "Ages",
+          "icon": "Boxing glove SVG",
+          "description": "We provide care and education for children from the age of two to five years old between..."
+        },
+        {
+          "title": "Capacity",
+          "icon": "Hand SVG",
+          "description": "We accept care and education for a maximum of 24 children in the age of two to five years..."
+        },
+        {
+          "title": "Fees & Funded hours",
+          "icon": "Fees badge SVG",
+          "description": "Sandbrook Community Playgroup is run by a small team of dedicated staff..."
+        },
+        {
+          "title": "Session Times & Lunch club",
+          "icon": "Clock SVG",
+          "description": "We deliver care and education for children in the age of two to five years..."
+        }
+      ]
+    },
+    "testimonials": {
+      "name": "What Parents Say Section",
+      "file": "components/sections/Testimonials.tsx",
+      "layout": {
+        "background": "#EDEBE8",
+        "padding": "64px 80px"
+      },
+      "heading": {
+        "text": "what parents say",
+        "fontFamily": "Burma Court Playgroup",
+        "fontSize": "36px",
+        "marginBottom": "32px"
+      },
+      "grid": {
+        "component": "TestimonialGrid",
+        "testimonials": 3,
+        "scrollable": true
+      },
+      "cta": {
+        "text": "See All Reviews",
+        "variant": "primary",
+        "marginTop": "32px"
+      }
+    },
+    "findUs": {
+      "name": "Find Us Section",
+      "file": "components/sections/FindUs.tsx",
+      "layout": {
+        "background": "#F6BE28",
+        "padding": "64px 80px",
+        "display": "grid",
+        "gridTemplateColumns": "2fr 1fr",
+        "gap": "48px"
+      },
+      "heading": {
+        "text": "find us",
+        "fontFamily": "Burma Court Playgroup",
+        "fontSize": "36px",
+        "marginBottom": "24px"
+      },
+      "map": {
+        "component": "Image or iframe",
+        "borderRadius": "8px",
+        "aspectRatio": "16:9"
+      },
+      "mapIllustration": {
+        "svg": "Custom map illustration",
+        "position": "right side"
+      },
+      "address": {
+        "icon": "Lucide MapPin",
+        "text": "Burma Court, London E5 0RJ",
+        "fontSize": "16px"
+      }
+    }
+  },
+
+  "assets": {
+    "fonts": [
+      {
+        "name": "Burma Court Playgroup",
+        "type": "custom",
+        "files": ["../Font/Custom font"],
+        "format": "truetype",
+        "weights": [400],
+        "usage": "Display text, headings, logo"
+      },
+      {
+        "name": "Geist",
+        "type": "Google Font",
+        "weights": [300, 400, 500, 600, 700],
+        "url": "https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap",
+        "usage": "Body text, UI elements"
+      }
+    ],
+
+    "svgs": {
+      "logo": {
+        "name": "BCP Logo",
+        "dimensions": "32 × 48px",
+        "usage": "Navigation, Footer",
+        "file": "components/icons/BCPLogo.tsx",
+        "colors": ["#282522"]
+      },
+      "customStar": {
+        "name": "Custom Star Rating",
+        "dimensions": "26 × 24px",
+        "usage": "Testimonial cards",
+        "file": "components/icons/CustomStar.tsx",
+        "colors": ["#F6BE28", "#45403B"],
+        "note": "Dual-color star with fill and outline"
+      }
+    },
+
+    "illustrations": [
+      {
+        "name": "Burma Court Playgroup Title",
+        "dimensions": "455 × 339px",
+        "usage": "Hero section",
+        "file": "components/icons/BCPTitle.tsx"
+      },
+      {
+        "name": "Ages Illustration",
+        "dimensions": "308 × 174px",
+        "colors": ["#6B1C18", "#D9D9D9"],
+        "usage": "Key Info - Ages card",
+        "file": "components/icons/AgesIllustration.tsx"
+      },
+      {
+        "name": "Fees Illustration",
+        "dimensions": "177 × 181px",
+        "colors": ["#F6BE28", "#45403B"],
+        "usage": "Key Info - Fees card",
+        "file": "components/icons/FeesIllustration.tsx"
+      },
+      {
+        "name": "Session Times Illustration",
+        "dimensions": "323 × 181px",
+        "usage": "Key Info - Session Times card",
+        "file": "components/icons/SessionTimesIllustration.tsx"
+      },
+      {
+        "name": "Pin Icon",
+        "dimensions": "19 × 24px",
+        "usage": "Location markers, Find Us section",
+        "file": "components/icons/PinIcon.tsx"
+      }
+    ],
+
+    "lucideIcons": {
+      "note": "Replace all emoji icons with Lucide equivalents",
+      "mapping": [
+        { "emoji": "✉️", "lucide": "Mail", "usage": "Email input" },
+        { "emoji": "🔍", "lucide": "Search", "usage": "Search input" },
+        { "emoji": "👁️", "lucide": "Eye", "usage": "Password visibility toggle" },
+        { "emoji": "📁", "lucide": "Folder", "usage": "File/folder icons" },
+        { "emoji": "✓", "lucide": "Check", "usage": "Checkboxes, select dropdowns" },
+        { "emoji": "×", "lucide": "X", "usage": "Close buttons, remove badges" },
+        { "emoji": "→", "lucide": "ChevronRight", "usage": "Navigation arrows" },
+        { "emoji": "↓", "lucide": "ChevronDown", "usage": "Dropdown indicators" }
+      ]
+    }
+  },
+
+  "pages": {
+    "homepage": {
+      "route": "/",
+      "file": "app/page.tsx",
+      "sections": [
+        {
+          "component": "Navigation",
+          "sticky": true
+        },
+        {
+          "component": "Hero",
+          "background": "#EDEBE8"
+        },
+        {
+          "component": "KeyInfo",
+          "background": "#78A681"
+        },
+        {
+          "component": "Testimonials",
+          "background": "#EDEBE8"
+        },
+        {
+          "component": "FindUs",
+          "background": "#F6BE28"
+        },
+        {
+          "component": "Footer",
+          "background": "#EDEBE8"
+        }
+      ],
+      "metadata": {
+        "title": "Burma Court Playgroup - Learning through play",
+        "description": "We provide care and education for children from the age of two to five years old between. We emulate the experience of going to a friend's home for a play date in an intimate building off Green Lanes."
+      }
+    }
+  },
+
+  "implementation": {
+    "tailwindConfig": {
+      "note": "All design tokens should be added to tailwind.config.ts",
+      "extends": {
+        "colors": "Map all color tokens",
+        "fontFamily": "Add custom fonts",
+        "fontSize": "Map all font sizes with line heights",
+        "spacing": "Map all spacing tokens",
+        "borderRadius": "Map all radius tokens",
+        "boxShadow": "Map all shadow tokens",
+        "screens": "Map breakpoints"
+      }
+    },
+    "fileStructure": {
+      "/app": "Next.js App Router pages",
+      "/components/atoms": "Button, Input, Badge, Checkbox, Radio, Toggle, Slider, Select",
+      "/components/molecules": "Card, SearchBar, TestimonialCard, StatCard, NavigationLink, Breadcrumb",
+      "/components/organisms": "Navigation, Footer, TestimonialGrid, Accordion, Tabs",
+      "/components/sections": "Hero, KeyInfo, Testimonials, FindUs",
+      "/components/icons": "All custom SVG components",
+      "/lib": "Utilities, design tokens",
+      "/public/fonts": "Custom font files"
+    },
+    "keyTechniques": [
+      "Use Next.js Image component for all images with 2deg rotation transform",
+      "Implement custom Select dropdown (not native HTML select)",
+      "Use Lucide React icons for all interactive elements",
+      "Keep custom SVGs for brand illustrations",
+      "Use CSS variables for theming",
+      "Implement responsive grid system matching Figma specs",
+      "Add smooth scroll behavior for testimonial carousel"
+    ]
+  }
+}

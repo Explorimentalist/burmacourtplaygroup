@@ -22,7 +22,7 @@ const Navbar: React.FC = () => {
   return (
     <>
       <nav 
-        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ease-in-out bg-neutral-400 ${isScrolled ? 'shadow-md' : ''}`}
+        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ease-in-out bg-white ${isScrolled ? 'shadow-md' : ''}`}
         aria-label="Main Navigation"
       >
         <div className="max-w-[1440px] mx-auto h-[64px] md:h-[96px] flex items-center relative px-6 md:px-[80px]">

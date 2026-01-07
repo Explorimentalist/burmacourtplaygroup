@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burma Court Playgroup</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                50: '#FEF2EE',
+                100: '#FDE0D7',
+                200: '#FBCEA9',
+                300: '#F9A481',
+                500: '#F65627',
+                600: '#D6451A',
+                700: '#B02E07',
+                900: '#7A220B',
+              },
+              secondary: {
+                50: '#F1F6F2',
+                100: '#DEEAE1',
+                200: '#C2D8C8',
+                500: '#78A681',
+                600: '#496F51',
+                700: '#496F51',
+                900: '#2C4231',
+              },
+              accent: {
+                500: '#F6BE28',
+                600: '#DDA310',
+                red: '#6B1C18',
+              },
+              neutral: {
+                50: '#FFFFFF',
+                100: '#F7F7F6',
+                200: '#EDEBE8',
+                300: '#DFDCD8',
+                400: '#D0CBC5',
+                500: '#888681',
+                600: '#45403B',
+                700: '#4A4A4A',
+                800: '#282522',
+                900: '#1A1A1A',
+              },
+              semantic: {
+                success: '#76A681',
+                warning: '#F8BC24',
+                error: '#EF4444',
+                info: '#3B82F6',
+              }
+            },
+            fontFamily: {
+              sans: ['Geist', 'sans-serif'],
+              body: ['Geist', 'sans-serif'],
+              display: ["'Burma Court Playgroup'", 'Geist', 'sans-serif'],
+            },
+            fontSize: {
+              '12': ['12px', '21px'],
+              '14': ['14px', '21px'],
+              '16': ['16px', '21px'],
+              '18': ['18px', '26px'],
+              '20': ['20px', '26px'],
+              '24': ['24px', '31px'],
+              '30': ['30px', '38px'],
+              '32': ['32px', '38px'],
+              '36': ['36px', '47px'],
+              '48': ['48px', '47px'],
+            },
+            spacing: {
+              '1': '4px',
+              '2': '8px',
+              '3': '12px',
+              '4': '16px',
+              '5': '20px',
+              '6': '24px',
+              '8': '32px',
+              '12': '48px',
+              '16': '64px',
+              'grid-margin-desktop': '80px',
+              'grid-margin-tablet': '48px',
+              'grid-margin-mobile': '24px',
+            },
+            borderRadius: {
+              'xs': '2px',
+              'sm': '4px',
+              'md': '8px',
+              'lg': '12px',
+              'xl': '24px',
+              'full': '9999px',
+            },
+            boxShadow: {
+              sm: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
+              md: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
+              lg: '0 10px 15px -3px rgb(0 0 0 / 0.1)',
+              xl: '0 20px 25px -5px rgb(0 0 0 / 0.1)',
+              inner: 'inset 0 2px 4px 0 rgb(0 0 0 / 0.05)',
+            },
+            screens: {
+              sm: '640px',
+              md: '768px',
+              lg: '1024px',
+              xl: '1280px',
+              '2xl': '1440px',
+            },
+          }
+        }
+      }
+    </script>
+    <style>
+      @font-face {
+          font-family: 'Burma Court Playgroup';
+          src: local('Comic Sans MS'), local('Chalkboard SE'), cursive; 
+          font-weight: normal;
+          font-style: normal;
+      }
+      /* Hide scrollbar for clean horizontal scrolls */
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "tailwindcss": "https://esm.sh/tailwindcss@^4.1.18"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-neutral-200 text-neutral-800">
+    <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
