@@ -54,34 +54,32 @@ const Testimonials: React.FC = () => {
 
   // GSAP ScrollTrigger animation setup
   useEffect(() => {
+    // Early returns for SSR safety and missing dependencies
+    if (typeof window === 'undefined') return;
     if (isLoading || !reviews.length || !sectionRef.current || !containerRef.current || !scrollContentRef.current) {
       return;
     }
 
-    const section = sectionRef.current;
-    const scrollContent = scrollContentRef.current;
+    // Allow DOM to settle before setting up animations
+    const timeoutId = setTimeout(() => {
+      const section = sectionRef.current;
+      const scrollContent = scrollContentRef.current;
+      
+      if (!section || !scrollContent) return;
     
-    // Calculate card width based on Grid component's system
+    // Calculate card width based on new responsive max-width approach
     const getCardWidth = () => {
       const screenWidth = window.innerWidth;
-      const maxWidth = 1440;
       
       if (screenWidth >= 1024) {
-        // Desktop: 5 columns out of 12, using Grid's px-20 (80px each side)
-        const containerWidth = Math.min(screenWidth, maxWidth);
-        const gridPadding = 80 * 2; // px-20 = 80px each side
-        const availableWidth = containerWidth - gridPadding;
-        return (availableWidth / 12) * 5;
+        // Desktop: max-w-lg = 512px
+        return 512;
       } else if (screenWidth >= 768) {
-        // Tablet: 3 columns out of 8, using Grid's px-12 (48px each side)
-        const gridPadding = 48 * 2; // px-12 = 48px each side
-        const availableWidth = screenWidth - gridPadding;
-        return (availableWidth / 8) * 3;
+        // Tablet: max-w-md = 448px
+        return 448;
       } else {
-        // Mobile: 3 columns out of 4, using Grid's px-6 (24px each side)
-        const gridPadding = 24 * 2; // px-6 = 24px each side
-        const availableWidth = screenWidth - gridPadding;
-        return (availableWidth / 4) * 3;
+        // Mobile: max-w-sm = 384px
+        return 384;
       }
     };
     
@@ -138,6 +136,12 @@ const Testimonials: React.FC = () => {
         ScrollTrigger.killAll();
       };
     }
+    }, 100); // 100ms delay to allow DOM to settle
+
+    return () => {
+      clearTimeout(timeoutId);
+      ScrollTrigger.killAll();
+    };
   }, [isLoading, reviews.length]);
 
   // Show loading state briefly
@@ -167,8 +171,26 @@ const Testimonials: React.FC = () => {
         </div>
 
         {/* Testimonials Grid */}
-        <div className="col-span-4 md:col-span-8 lg:col-span-12">
-          <div ref={containerRef} className="overflow-hidden w-full pb-10">
+        <div className="col-span-4 md:col-span-8 lg:col-span-12 relative">
+          {/* Left decorative line */}
+          <div className="absolute left-0 top-0 h-full w-[9px] z-10 pointer-events-none">
+            <img 
+              src="/illustrations/decorative/line_1.svg" 
+              alt="" 
+              className="h-full w-full object-cover object-center"
+            />
+          </div>
+          
+          {/* Right decorative line */}
+          <div className="absolute right-0 top-0 h-full w-[9px] z-10 pointer-events-none">
+            <img 
+              src="/illustrations/decorative/line_2.svg" 
+              alt="" 
+              className="h-full w-full object-cover object-center"
+            />
+          </div>
+
+          <div ref={containerRef} className="overflow-hidden w-full py-5">
             <div 
               ref={scrollContentRef}
               className="flex flex-nowrap gap-4"
@@ -177,7 +199,7 @@ const Testimonials: React.FC = () => {
               {reviews.map((review, index) => (
                 <div 
                   key={`review-${index}`}
-                  className="flex-shrink-0 bg-white p-6 flex flex-col gap-6 shadow-sm min-h-[339px] rounded-md border border-neutral-100 testimonial-card-grid-responsive"
+                  className="flex-shrink-0 bg-white p-6 flex flex-col gap-6 shadow-sm rounded-md border border-neutral-100 w-full max-w-sm md:max-w-md lg:max-w-lg"
                   style={{ 
                     backgroundColor: index % 2 === 0 ? '#ffffff' : '#fafafa'
                   }}

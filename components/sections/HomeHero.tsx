@@ -2,43 +2,41 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { cn } from '../../lib/utils';
-import Lenis from '@studio-freight/lenis';
 import { ZoomParallax } from "../ui/zoom-parallax";
 import AnimatedLogo from "../AnimatedLogo";
 
 const HomeHero: React.FC = () => {
-  React.useEffect(() => {
-    const lenis = new Lenis();
-   
-    function raf(time: number) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
-    }
-
-    requestAnimationFrame(raf)
-  }, []);
 
   const images = [
     {
-      src: "images/hero/IMG_2455.jpg?object-fit:contain",
+      src: "images/hero/IMG_3063.jpg",
+      alt: "Kids in garden", 
+      gridArea: "1 / 1 / 7 / 4", // Baseline at bottom of row 6 (end at row 7), 3 columns wide
+      size: "xl" as const,
+    },
+    {
+      src: "images/hero/IMG_2455.jpg",
       alt: "Activity at table",
-      className: "object-contain w-full",
+      gridArea: "1 / 4 / 6 / 8", // Moved up one row: row 1-6, 4 columns wide
+      size: "xl" as const,
     },
     {
-      src: "images/hero/IMG_2964.jpg?auto=format",
-      alt: "Kid with paint",
-    },
-    {
-      src: "images/hero/IMG_3063.jpg?auto=format",
-      alt: "Kids in garden",
-    },
-    {
-      src: "images/hero/IMG_3092.jpg?object-fit=contain",
+      src: "images/hero/IMG_3608.jpg",
       alt: "Upside down play",
+      gridArea: "1 / 8 / 4 / 13", // Moved up one row: row 1-4, Column 8, 5 columns wide
+      size: "xl" as const,
     },
     {
-      src: "images/hero/IMG_3228.jpg?object-fit=contain",
+      src: "images/hero/IMG_3228.jpg",
       alt: "Kid doing puzzle",
+      gridArea: "7 / 3 / 10 / 8", // Row 7, Column 3, 5 columns wide
+      size: "lg" as const,
+    },
+    {
+      src: "images/hero/IMG_2964.jpg", 
+      alt: "Kid with paint",
+      gridArea: "6 / 8 / 9 / 11", // Row 6, Column 8, 3 columns wide
+      size: "md" as const,
     }
   ];
 
