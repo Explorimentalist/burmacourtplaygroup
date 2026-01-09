@@ -5,9 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "npm run copy-reviews",
     "build": "vite build",
+    "copy-reviews": "mkdir -p public/data && cp data/reviews.json public/data/reviews.json",
     "preview": "vite preview",
-    "update-reviews": "node scripts/updateReviews.js",
+    "update-reviews": "node scripts/updateReviews.js && npm run copy-reviews",
     "reviews:manual": "npm run update-reviews"
   },
   "dependencies": {
