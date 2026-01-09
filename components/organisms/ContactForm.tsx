@@ -217,19 +217,37 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
           throw new Error('EmailJS configuration is missing. Please check your environment variables.')
         }
         
-        // Prepare template parameters
+        // Data sanitization function to prevent template corruption
+        const sanitizeText = (text: string): string => {
+          return text
+            .replace(/[<>]/g, '') // Remove HTML brackets
+            .replace(/[\u0000-\u001F\u007F-\u009F]/g, '') // Remove control characters
+            .trim()
+        }
+        
+        // Prepare template parameters - matching EmailJS template variable names
         const templateParams = {
-          fullName: formData.fullName,
-          email: formData.email,
-          phoneNumber: formData.phoneNumber,
-          reasonForContacting: formData.reasonForContacting,
-          childName: formData.childName || 'Not provided',
-          dateOfBirth: formData.dateOfBirth || 'Not provided',
-          desiredStartDate: formData.desiredStartDate || 'Not provided',
-          message: formData.message || 'No additional message',
-          howDidYouHear: formData.howDidYouHear || 'Not specified',
+          from_name: sanitizeText(formData.fullName),
+          from_email: sanitizeText(formData.email),
+          phone_number: sanitizeText(formData.phoneNumber),
+          reason_for_contacting: formData.reasonForContacting,
+          inquiry_type: formData.reasonForContacting === 'inscription' ? 'inscription enquiry' : 'general information',
+          child_name: formData.childName ? sanitizeText(formData.childName) : 'Not provided',
+          date_of_birth: formData.dateOfBirth || 'Not provided',
+          desired_start_date: formData.desiredStartDate || 'Not provided',
+          message: formData.message ? sanitizeText(formData.message) : 'No additional message',
+          how_did_you_hear: formData.howDidYouHear || 'Not specified',
+          submission_date: new Date().toLocaleString(),
           to_email: import.meta.env.VITE_TARGET_EMAIL || 'brianoko@gmail.com'
         }
+        
+        // Debug logging - remove in production
+        console.log('📧 EmailJS Debug Info:')
+        console.log('Service ID:', serviceId)
+        console.log('Template ID:', templateId)
+        console.log('Public Key:', publicKey ? 'Present' : 'Missing')
+        console.log('Template Parameters:', templateParams)
+        console.log('Expected template variables: from_name, from_email, phone_number, reason_for_contacting, inquiry_type, child_name, date_of_birth, desired_start_date, message, how_did_you_hear, submission_date, to_email')
         
         const result = await emailjs.send(
           serviceId,
@@ -237,6 +255,8 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
           templateParams,
           publicKey
         )
+        
+        console.log('✅ EmailJS Response:', result)
       }
       
       // Show success message first

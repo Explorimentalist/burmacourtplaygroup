@@ -29,11 +29,17 @@ const Navbar: React.FC = () => {
           
           {/* Mobile Layout: Logo Left, Hamburger Right */}
           <div className="md:hidden flex items-center justify-between w-full">
-            <Link to="/" aria-label="Go to Homepage" className="flex items-center">
+            <Link to="/" aria-label="Go to Homepage" className="flex items-center group relative">
               <img 
                 src="/Logo/logo.svg" 
                 alt="Burma Court Playgroup Logo" 
-                className="h-8 w-auto"
+                className="h-8 w-auto transition-opacity duration-200 group-hover:opacity-0"
+              />
+              <img 
+                src="/icons/custom/home.svg" 
+                alt="Home" 
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+                style={{ filter: 'brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(1176%) hue-rotate(350deg) brightness(100%) contrast(87%)' }}
               />
             </Link>
             <button 
@@ -61,11 +67,17 @@ const Navbar: React.FC = () => {
 
             {/* Middle Item: Logo */}
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-              <Link to="/" aria-label="Go to Homepage" className="block">
+              <Link to="/" aria-label="Go to Homepage" className="block group relative">
                 <img 
                   src="/Logo/logo.svg" 
                   alt="Burma Court Playgroup Logo" 
-                  className="h-12 w-auto"
+                  className="h-12 w-auto transition-opacity duration-200 group-hover:opacity-0"
+                />
+                <img 
+                  src="/icons/custom/home.svg" 
+                  alt="Home" 
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+                  style={{ filter: 'brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(1176%) hue-rotate(350deg) brightness(100%) contrast(87%)' }}
                 />
               </Link>
             </div>

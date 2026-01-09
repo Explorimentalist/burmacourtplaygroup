@@ -179,8 +179,6 @@ const Footer: React.FC = () => {
           <div className="col-span-2 flex flex-col gap-3 mb-12">
             <Link to="/" className="font-sans text-16 font-regular text-neutral-600 hover:text-primary-500 transition-colors">Home</Link>
             <Link to="/about" className="font-sans text-16 font-regular text-neutral-600 hover:text-primary-500 transition-colors">About</Link>
-            <a href="/a-day-at-bcp" className="font-sans text-16 font-regular text-neutral-600 hover:text-primary-500 transition-colors whitespace-nowrap">A day at BCP</a>
-            <a href="/education" className="font-sans text-16 font-regular text-neutral-600 hover:text-primary-500 transition-colors">Education</a>
           </div>
           
           <div className="col-span-2 flex flex-col gap-3 mb-12">
@@ -229,8 +227,6 @@ const Footer: React.FC = () => {
             <nav className="flex flex-col gap-3">
               <Link to="/" className="font-sans text-16 font-regular text-neutral-600 hover:text-primary-500 transition-colors">Home</Link>
               <Link to="/about" className="font-sans text-16 font-regular text-neutral-600 hover:text-primary-500 transition-colors">About</Link>
-              <a href="/a-day-at-bcp" className="font-sans text-16 font-regular text-neutral-600 hover:text-primary-500 transition-colors whitespace-nowrap">A day at BCP</a>
-              <a href="/education" className="font-sans text-16 font-regular text-neutral-600 hover:text-primary-500 transition-colors">Education</a>
             </nav>
           </div>
 

@@ -17,13 +17,13 @@ const HomeHero: React.FC = () => {
     {
       src: "images/hero/IMG_2455.jpg",
       alt: "Activity at table",
-      gridArea: "1 / 4 / 6 / 8", // Moved up one row: row 1-6, 4 columns wide
+      gridArea: "1 / 4 / 7 / 8", // Bottom aligned to row 6: row 1 to row 7 (bottom of row 6), 4 columns wide
       size: "xl" as const,
     },
     {
       src: "images/hero/IMG_3608.jpg",
       alt: "Upside down play",
-      gridArea: "1 / 8 / 4 / 13", // Moved up one row: row 1-4, Column 8, 5 columns wide
+      gridArea: "1 / 8 / 6 / 13", // Bottom aligned to row 5: spans to row 6 (bottom of row 5), Column 8, 5 columns wide
       size: "xl" as const,
     },
     {

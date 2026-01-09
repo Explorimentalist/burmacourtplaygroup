@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { MapPin } from 'lucide-react';
 import Grid from '../atoms/Grid';
 
@@ -20,16 +20,53 @@ const FindUs: React.FC = () => {
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [slidePosition, setSlidePosition] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isAnimatingRef = useRef(false);
+
+  // Create doubled images array for seamless infinite loop
+  const doubledImages = [...images, ...images];
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => 
-        prevIndex === images.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 4000); // Change image every 4 seconds
+    const slideToNext = () => {
+      if (isAnimatingRef.current) return;
+      
+      isAnimatingRef.current = true;
+      
+      // Move to next slide position
+      const nextPosition = slidePosition + 1;
+      const nextImageIndex = (currentImageIndex + 1) % images.length;
+      
+      setSlidePosition(nextPosition);
+      setCurrentImageIndex(nextImageIndex);
+      
+      // After transition completes
+      setTimeout(() => {
+        // If we've reached the end of our doubled array, reset without animation
+        if (nextPosition >= images.length) {
+          // Remove transition temporarily for instant reset
+          if (containerRef.current) {
+            containerRef.current.style.transition = 'none';
+          }
+          
+          // Reset to position 0 (showing the same image as position 3, but at the beginning)
+          setSlidePosition(0);
+          
+          // Re-enable transition after a frame
+          requestAnimationFrame(() => {
+            if (containerRef.current) {
+              containerRef.current.style.transition = 'transform 1000ms ease-in-out';
+            }
+          });
+        }
+        
+        isAnimatingRef.current = false;
+      }, 1000); // Match transition duration
+    };
 
+    const interval = setInterval(slideToNext, 4000);
     return () => clearInterval(interval);
-  }, [images.length]);
+  }, [slidePosition, currentImageIndex, images.length]);
 
   const googleMapsUrl = "https://www.google.com/maps/place/Burma+Court+Playgroup/@51.5559268,-0.0889307,11z/data=!4m15!1m8!3m7!1s0x48761c874a5ac4b9:0x47aed6d4144142b4!2sBurma+Court+Playgroup!8m2!3d51.5559272!4d-0.0885469!10e5!16s%2Fg%2F11g_cg4bv!3m5!1s0x48761c874a5ac4b9:0x47aed6d4144142b4!8m2!3d51.5559272!4d-0.0885469!16s%2Fg%2F11g_cg4bv!5m1!1e4?entry=ttu&g_ep=EgoyMDI2MDEwNC4wIKXMDSoASAFQAw%3D%3D";
 
@@ -44,22 +81,40 @@ const FindUs: React.FC = () => {
 
         <div className="col-span-4 md:col-span-8 lg:col-span-7">
           <div className="w-full h-[300px] md:h-[544px] overflow-hidden relative">
-            {images.map((image, index) => (
-              <img
-                key={index}
-                src={image.src}
-                alt={image.alt}
-                className={`w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-1000 ${
-                  index === currentImageIndex ? 'opacity-100' : 'opacity-0'
-                }`}
-              />
-            ))}
+            <div 
+              ref={containerRef}
+              className="flex h-full transition-transform duration-1000 ease-in-out"
+              style={{ 
+                width: `${doubledImages.length * 100}%`,
+                transform: `translateX(${-(slidePosition * (100 / doubledImages.length))}%)`
+              }}
+            >
+              {doubledImages.map((image, index) => (
+                <div
+                  key={`${image.src}-${index}`}
+                  className="flex-shrink-0 w-full h-full"
+                  style={{ width: `${100 / doubledImages.length}%` }}
+                >
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+            
             {/* Slide indicators */}
             <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
               {images.map((_, index) => (
                 <button
                   key={index}
-                  onClick={() => setCurrentImageIndex(index)}
+                  onClick={() => {
+                    if (!isAnimatingRef.current) {
+                      setCurrentImageIndex(index);
+                      setSlidePosition(index);
+                    }
+                  }}
                   className={`w-2 h-2 rounded-full transition-colors duration-300 ${
                     index === currentImageIndex ? 'bg-white' : 'bg-white/50'
                   }`}
