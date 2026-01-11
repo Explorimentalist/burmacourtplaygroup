@@ -104,8 +104,8 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Slide-in Menu Content */}
         <div 
-          className={`fixed top-0 right-0 h-full w-[280px] bg-neutral-200 z-[100] transform transition-transform duration-300 ease-in-out md:hidden shadow-2xl
-            ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}
+          className={`fixed top-0 right-0 h-full w-[280px] bg-neutral-200 z-[100] transform transition-transform duration-300 ease-in-out md:hidden shadow-2xl translate-x-full
+            ${isMobileMenuOpen ? '!translate-x-0' : ''}
           `}
         >
           <div className="flex flex-col h-full">
