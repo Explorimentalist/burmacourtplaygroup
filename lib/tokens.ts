@@ -87,7 +87,7 @@ export const tokens = {
       32: { size: '32px', lineHeight: '38px' }, // Large headings (h2)
       36: { size: '36px', lineHeight: '47px' }, // Section headings
       48: { size: '48px', lineHeight: '47px' }, // Hero headings (h1)
-      64: { size: '64px', lineHeight: '38px' }, // Large page headings
+      64: { size: '64px', lineHeight: '72px' }, // Large page headings (1.125x ratio)
     },
     fontWeight: {
       light: 300,    // Light text, subtle emphasis

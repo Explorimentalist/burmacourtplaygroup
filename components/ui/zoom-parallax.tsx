@@ -54,16 +54,16 @@ export function ZoomParallax({ images }: ZoomParallaxProps) {
         
         // Mobile: 4-column grid positioning
         if (isUpsideDownPlay) {
-            return 'auto / 2 / auto / 5'; // Column 2, spanning 3 columns
+            return '1 / 2 / auto / 5'; // Row 1, Column 2, spanning 3 columns
         }
         if (isKidsInGarden) {
             return '3 / 1 / auto / 3'; // Row 3, Column 1, spanning 2 columns
         }
         if (isKidWithPaint) {
-            return '6 / 3 / auto / 5'; // Row 6, Column 3, spanning 2 columns
+            return '4 / 3 / 6 / 5'; // Row 4-5, Column 3, spanning 2 columns, bottom-aligned to row 5
         }
         if (isActivityAtTable) {
-            return '7 / 1 / auto / 4'; // Row 7, centered, spanning 3 columns
+            return '6 / 2 / 9 / 5'; // Row 6-8, Column 2-5 (3 cols wide), bottom aligned to row 8
         }
         if (isLastPicture) {
             return '9 / 1 / auto / 4'; // Row 9, Column 1, spanning 3 columns
@@ -76,30 +76,49 @@ export function ZoomParallax({ images }: ZoomParallaxProps) {
         <div ref={container} className="relative h-[400vh]">
             <div className="sticky top-0 h-screen overflow-hidden">
                 {/* CSS Grid Container with unified scale */}
-                <motion.div 
-                    style={{ 
+                {/* Transform origin determines zoom focus point:
+                    - Desktop: 37.75% 15.5% (upper-left area, ~cols 4-5, rows 1-2)
+                    - Mobile: 62% 55% (center of cols 2-4, rows 5-7 in 4-col/10-row grid)
+                */}
+                <motion.div
+                    style={{
                         scale: gridScale,
-                        transformOrigin: "37.75% 15.5%"
+                        transformOrigin: isMobile ? "62% 55%" : "37.75% 15.5%"
                     }}
                     className="grid grid-cols-4 md:grid-cols-12 grid-rows-10 gap-4 h-full w-full max-w-[1440px] mx-auto p-6"
                 >
                     {images.map(({ src, alt, gridArea, size = 'md', className }, index) => {
-                        // Special positioning for "Kids in garden" - align to bottom of grid area
+                        // Special positioning for images
                         const isKidsInGarden = src.includes('IMG_3063');
                         const isUpsideDownPlay = src.includes('IMG_3608');
                         const isActivityAtTable = src.includes('IMG_2455');
                         const isKidWithPaint = src.includes('paint') || src.includes('Paint'); // Add specific filename once known
                         const isLastPicture = !isKidsInGarden && !isUpsideDownPlay && !isActivityAtTable && !isKidWithPaint;
-                        const containerClass = (isKidsInGarden || isUpsideDownPlay || isActivityAtTable || isKidWithPaint) ? 'flex items-end' : '';
                         
+                        // Container alignment: Kids in garden and upside down play align to top, others to bottom
+                        let containerClass = '';
+                        if (isKidsInGarden || isUpsideDownPlay) {
+                            containerClass = 'flex items-start'; // Align to top for these specific images
+                        } else if (isActivityAtTable || isKidWithPaint) {
+                            containerClass = 'flex items-end'; // Keep bottom alignment for these
+                        }
+                        
+                        // Z-index: On mobile, activity at table goes on top; otherwise use default stacking
+                        const zIndex = isMobile && isActivityAtTable
+                            ? images.length + 1
+                            : images.length - index;
+
+                        // Hide kid with paint on mobile
+                        const mobileHiddenClass = isKidWithPaint ? 'hidden md:block' : '';
+
                         return (
                             <div
                                 key={index}
-                                style={{ 
-                                    zIndex: images.length - index,
+                                style={{
+                                    zIndex,
                                     gridArea: getMobileGridArea(gridArea, isUpsideDownPlay, isKidsInGarden, isKidWithPaint, isActivityAtTable, isLastPicture)
                                 }}
-                                className={`relative ${containerClass} ${className || ''}`}
+                                className={`relative ${containerClass} ${mobileHiddenClass} ${className || ''}`}
                             >
                                 <div className={`relative bg-transparent ${isKidsInGarden ? 'w-full' : getSizeClasses()}`}>
                                     <img

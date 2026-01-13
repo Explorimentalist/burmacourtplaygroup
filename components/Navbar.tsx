@@ -25,7 +25,7 @@ const Navbar: React.FC = () => {
         className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ease-in-out bg-white ${isScrolled ? 'shadow-md' : ''}`}
         aria-label="Main Navigation"
       >
-        <div className="max-w-[1440px] mx-auto h-[64px] md:h-[96px] flex items-center relative px-6 md:px-[80px]">
+        <div className="max-w-[1440px] mx-auto h-[56px] md:h-[96px] flex items-center relative px-6 md:px-[80px]">
           
           {/* Mobile Layout: Logo Left, Hamburger Right */}
           <div className="md:hidden flex items-center justify-between w-full">
@@ -102,29 +102,38 @@ const Navbar: React.FC = () => {
           onClick={toggleMobileMenu}
         />
 
-        {/* Mobile Slide-in Menu Content */}
-        <div 
-          className={`fixed top-0 right-0 h-full w-[280px] bg-neutral-200 z-[100] transform transition-transform duration-300 ease-in-out md:hidden shadow-2xl translate-x-full
-            ${isMobileMenuOpen ? '!translate-x-0' : ''}
+        {/* Mobile Full Screen Menu Content */}
+        <div
+          className={`fixed inset-0 bg-neutral-200 z-[100] transition-transform duration-300 ease-in-out md:hidden
+            ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}
           `}
         >
           <div className="flex flex-col h-full">
+            {/* Close button - top right */}
             <div className="p-6 flex justify-end">
               <button onClick={toggleMobileMenu} className="p-2 text-neutral-800 hover:text-primary-500 transition-colors">
                 <X size={28} />
               </button>
             </div>
-            <div className="flex flex-col gap-8 px-8 mt-4">
-              <Link 
-                to="/about" 
-                onClick={toggleMobileMenu}
-                className="text-[20px] font-medium text-neutral-800 hover:text-primary-500 transition-colors border-b border-neutral-300 pb-2"
-              >
-                About
-              </Link>
-              <Link 
+            
+            {/* Centered navigation links */}
+            <div className="flex-1 flex flex-col justify-center items-center px-8">
+              <div className="flex flex-col gap-8 text-center">
+                <Link
+                  to="/about"
+                  onClick={toggleMobileMenu}
+                  className="font-body text-24 font-regular text-neutral-800 hover:text-primary-500 active:text-primary-700 transition-colors duration-200"
+                >
+                  About
+                </Link>
+              </div>
+            </div>
+
+            {/* Bottom button - using design system md button specs */}
+            <div className="p-6 pb-8">
+              <Link
                 to="/contact"
-                className="bg-primary-500 hover:bg-primary-600 text-neutral-50 px-6 py-4 rounded-md text-[18px] font-medium shadow-md active:scale-95 transition-all"
+                className="font-body bg-primary-500 hover:bg-primary-600 active:bg-primary-700 text-neutral-50 py-3 px-5 rounded-sm text-16 font-medium shadow-sm active:scale-95 transition-all duration-200 w-full flex items-center justify-center gap-2 focus:outline-none focus:ring-4 focus:ring-primary-200"
                 onClick={toggleMobileMenu}
               >
                 Get in touch

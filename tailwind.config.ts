@@ -44,9 +44,9 @@ const config: Config = {
         '21': '21px',
         '26': '26px',
         '31': '31px',
-        '38': '38px',
         '40': '40px',
         '47': '47px',
+        '72': '72px',
       },
       
       // Spacing system
