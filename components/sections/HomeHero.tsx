@@ -71,7 +71,7 @@ const HomeHero: React.FC = () => {
       <div className="relative w-full bg-neutral-200 py-20 md:py-32">
         <div className="max-w-[1440px] mx-auto px-6 md:px-[80px] flex flex-col items-center">
           <div className="max-w-[856px] text-center">
-            <p className="font-body font-light text-36 text-neutral-600 mb-12 px-4" style={{ fontFamily: 'Geist, sans-serif !important' }}>
+            <p className="font-body font-light text-36 text-neutral-600 mb-12 px-4 sm:px-0 sm:text-24" style={{ fontFamily: 'Geist, sans-serif !important' }}>
               We provide care and education for children from the age of two to five years old between. We emulate the experience of going to a friend's home for a play date in an intimate building off Green Lanes.
             </p>
             

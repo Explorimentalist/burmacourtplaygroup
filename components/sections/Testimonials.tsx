@@ -190,37 +190,37 @@ const Testimonials: React.FC = () => {
             />
           </div>
 
-          <div ref={containerRef} className="overflow-hidden w-full py-5">
+          <div ref={containerRef} className="overflow-x-hidden w-full py-5">
             <div 
               ref={scrollContentRef}
               className="flex flex-nowrap gap-4"
               style={{ willChange: 'transform' }}
             >
               {reviews.map((review, index) => (
-                <div 
+                <div
                   key={`review-${index}`}
-                  className="flex-shrink-0 bg-white p-6 flex flex-col gap-6 shadow-sm rounded-md border border-neutral-100 w-full max-w-sm md:max-w-md lg:max-w-lg"
-                  style={{ 
+                  className="flex-shrink-0 bg-white p-6 flex flex-col gap-6 shadow-sm rounded-md border border-neutral-100 w-full max-w-sm md:max-w-md lg:max-w-lg max-h-[55vh] md:max-h-none"
+                  style={{
                     backgroundColor: index % 2 === 0 ? '#ffffff' : '#fafafa'
                   }}
                 >
-                  <div className="flex gap-2 items-center">
+                  <div className="flex gap-2 items-center flex-shrink-0">
                     {[...Array(5)].map((_, i) => (
-                      <Star 
-                        key={i} 
-                        size={24} 
-                        fill={i < review.rating ? "#F6BE28" : "transparent"} 
-                        stroke="#45403B" 
-                        strokeWidth={1.5} 
+                      <Star
+                        key={i}
+                        size={24}
+                        fill={i < review.rating ? "#F6BE28" : "transparent"}
+                        stroke="#45403B"
+                        strokeWidth={1.5}
                       />
                     ))}
                   </div>
 
-                  <p className="font-sans text-16 font-regular text-neutral-600 flex-grow leading-relaxed">
+                  <p className="font-sans text-16 font-regular text-neutral-600 flex-grow leading-relaxed overflow-y-auto min-h-0">
                     {review.text}
                   </p>
 
-                  <div className="flex flex-col items-end gap-2">
+                  <div className="flex flex-col items-end gap-2 flex-shrink-0">
                     <div 
                       className="w-[48px] h-[48px] bg-cover bg-center rounded-xs"
                       style={{ backgroundImage: `url(${review.profile_photo_url})` }}
