@@ -104,8 +104,8 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Full Screen Menu Content */}
         <div
-          className={`fixed inset-0 bg-neutral-200 z-[100] transition-transform duration-300 ease-in-out md:hidden
-            ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}
+          className={`fixed inset-0 bg-neutral-200 z-[100] transition-transform duration-300 ease-in-out md:hidden mobile-menu-closed
+            ${isMobileMenuOpen ? 'translate-x-0' : ''}
           `}
         >
           <div className="flex flex-col h-full">

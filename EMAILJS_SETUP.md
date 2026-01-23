@@ -55,7 +55,8 @@ Sent via Burma Court Playgroup website contact form
 4. Set the **To Email** to: `{{to_email}}`
 5. Set the **From Email** to: `{{from_email}}`
 6. Set the **From Name** to: `{{from_name}}`
-7. Save the template and note down your **Template ID** (e.g., `template_xyz789`)
+7. (Optional) Set the **Bcc** field to: `{{bcc_email}}` if you want to receive a copy for testing
+8. Save the template and note down your **Template ID** (e.g., `template_xyz789`)
 
 ### 4. Get Public Key
 1. Go to **Account** → **General**
@@ -70,7 +71,10 @@ VITE_EMAILJS_SERVICE_ID=your_actual_service_id
 VITE_EMAILJS_TEMPLATE_ID=your_actual_template_id
 VITE_EMAILJS_PUBLIC_KEY=your_actual_public_key
 VITE_TARGET_EMAIL=leighbcp@gmail.com
+VITE_BCC_EMAIL=your_email@example.com
 ```
+
+**Note:** `VITE_BCC_EMAIL` is optional. If set, you'll receive a BCC copy of all form submissions for testing purposes.
 
 ### 6. Test the Setup
 1. Start the development server: `npm run dev`

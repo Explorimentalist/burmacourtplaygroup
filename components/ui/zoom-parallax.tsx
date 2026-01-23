@@ -2,6 +2,7 @@
 
 import { useScroll, useTransform, motion } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
+import { gsap } from 'gsap';
 
 interface Image {
     src: string;
@@ -17,6 +18,7 @@ interface ZoomParallaxProps {
 
 export function ZoomParallax({ images }: ZoomParallaxProps) {
     const container = useRef(null);
+    const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
     const [isMobile, setIsMobile] = useState(false);
     
     const { scrollYProgress } = useScroll({
@@ -29,6 +31,20 @@ export function ZoomParallax({ images }: ZoomParallaxProps) {
         checkScreenSize();
         window.addEventListener('resize', checkScreenSize);
         return () => window.removeEventListener('resize', checkScreenSize);
+    }, []);
+
+    useEffect(() => {
+        // Animate images sliding up with stagger
+        // Start when Court word begins (0.8s), with 0.15s stagger between images
+        // Initial state is handled by CSS class to prevent FOUC
+        gsap.to(imageRefs.current.filter(Boolean), {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+            ease: "power2.out",
+            stagger: 0.15,
+            delay: 0.8
+        });
     }, []);
 
     const scale4 = useTransform(scrollYProgress, [0, 1], [1, 4]);
@@ -114,11 +130,14 @@ export function ZoomParallax({ images }: ZoomParallaxProps) {
                         return (
                             <div
                                 key={index}
+                                ref={(el) => {
+                                    imageRefs.current[index] = el;
+                                }}
                                 style={{
                                     zIndex,
                                     gridArea: getMobileGridArea(gridArea, isUpsideDownPlay, isKidsInGarden, isKidWithPaint, isActivityAtTable, isLastPicture)
                                 }}
-                                className={`relative ${containerClass} ${mobileHiddenClass} ${className || ''}`}
+                                className={`relative ${containerClass} ${mobileHiddenClass} animate-slide-up-initial-lg ${className || ''}`}
                             >
                                 <div className={`relative bg-transparent ${isKidsInGarden ? 'w-full' : getSizeClasses()}`}>
                                     <img

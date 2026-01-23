@@ -1,11 +1,13 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { gsap } from 'gsap';
 import { cn } from '../../lib/utils';
 import { ZoomParallax } from "../ui/zoom-parallax";
 import AnimatedLogo from "../AnimatedLogo";
 
 const HomeHero: React.FC = () => {
+  const taglineRef = useRef<HTMLParagraphElement>(null);
 
   const images = [
     {
@@ -40,6 +42,20 @@ const HomeHero: React.FC = () => {
     }
   ];
 
+  useEffect(() => {
+    if (!taglineRef.current) return;
+
+    // Animate tagline sliding up - starts when Court word begins (0.8s)
+    // Initial state is handled by CSS class to prevent FOUC
+    gsap.to(taglineRef.current, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: "power2.out",
+      delay: 0.8
+    });
+  }, []);
+
   return (
     <main className="min-h-screen w-full">
       {/* Header Section with Logo and Tagline */}
@@ -58,7 +74,11 @@ const HomeHero: React.FC = () => {
           <div className="w-[300px] md:w-[455px] h-auto mb-[40px]">
             <AnimatedLogo className="w-full h-full" />
           </div>
-          <p className="font-body font-light text-24 text-neutral-600 mb-0" style={{ fontFamily: 'Geist, sans-serif !important' }}>
+          <p 
+            ref={taglineRef}
+            className="font-body font-light text-24 text-neutral-600 mb-0 animate-slide-up-initial" 
+            style={{ fontFamily: 'Geist, sans-serif !important' }}
+          >
             Learning through play.
           </p>
         </div>

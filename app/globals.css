@@ -209,6 +209,22 @@
   .section-padding-mobile {
     @apply py-section-mobile px-grid-margin-mobile md:px-grid-margin-tablet lg:px-grid-margin-desktop;
   }
+  
+  /* Animation initial states - prevents FOUC */
+  .animate-slide-up-initial {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  
+  .animate-slide-up-initial-lg {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  
+  /* Mobile menu initial state - prevents FOUC */
+  .mobile-menu-closed {
+    transform: translateX(100%);
+  }
 }
 
 /* Utility layer for additional utilities */
@@ -254,5 +270,163 @@ select option:checked {
   select {
     font-size: 16px !important;
     -webkit-appearance: none;
+  }
+}
+
+/* ===========================================
+   DATE PICKER / CALENDAR STYLING
+   Matches Burma Court Playgroup Design System
+   =========================================== */
+
+/* Base date input styling */
+input[type="date"] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 21px;
+  color: var(--neutral-600);
+  background-color: var(--neutral-50);
+  min-height: 48px;
+  padding: 12px;
+  border: 1px solid transparent;
+  transition: border-color 0.2s ease;
+  /* Remove default appearance for consistent styling */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+input[type="date"]:hover {
+  border-color: var(--neutral-400);
+}
+
+input[type="date"]:focus {
+  border-color: var(--neutral-600);
+  outline: none;
+}
+
+/* Style the calendar picker icon (WebKit browsers) */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  padding: 4px;
+  margin-left: 8px;
+  border-radius: var(--radius-xs);
+  background-color: transparent;
+  transition: background-color 0.2s ease;
+  /* Use primary color filter for the icon */
+  filter: opacity(0.6);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  background-color: var(--primary-100);
+  filter: opacity(1);
+}
+
+/* Style the date text inside the input (WebKit) */
+input[type="date"]::-webkit-datetime-edit {
+  font-family: var(--font-body);
+  color: var(--neutral-600);
+  padding: 0;
+}
+
+input[type="date"]::-webkit-datetime-edit-fields-wrapper {
+  background-color: transparent;
+}
+
+input[type="date"]::-webkit-datetime-edit-text {
+  color: var(--neutral-500);
+  padding: 0 4px;
+}
+
+input[type="date"]::-webkit-datetime-edit-day-field,
+input[type="date"]::-webkit-datetime-edit-month-field,
+input[type="date"]::-webkit-datetime-edit-year-field {
+  color: var(--neutral-600);
+  padding: 2px 4px;
+  border-radius: var(--radius-xs);
+  transition: all 0.15s ease;
+}
+
+/* Highlight individual date parts on focus */
+input[type="date"]::-webkit-datetime-edit-day-field:focus,
+input[type="date"]::-webkit-datetime-edit-month-field:focus,
+input[type="date"]::-webkit-datetime-edit-year-field:focus {
+  background-color: var(--primary-100);
+  color: var(--primary-700);
+  outline: none;
+}
+
+/* Placeholder styling when no date is selected */
+input[type="date"]:invalid::-webkit-datetime-edit,
+input[type="date"][value=""]::-webkit-datetime-edit {
+  color: var(--neutral-500);
+}
+
+/* Firefox date input styling */
+input[type="date"]::-moz-focus-inner {
+  border: 0;
+}
+
+/* Style the clear button (WebKit) */
+input[type="date"]::-webkit-clear-button {
+  display: none; /* Hide default clear button */
+}
+
+/* Style the inner spin button (WebKit) */
+input[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+
+/*
+   Calendar Popup Styling (Limited browser support)
+   These styles work in some Chromium-based browsers
+*/
+::-webkit-calendar-picker {
+  background-color: var(--neutral-50);
+  border: 1px solid var(--neutral-300);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  font-family: var(--font-body);
+}
+
+/* Calendar day cells */
+::-webkit-datetime-edit-day-field {
+  font-weight: 500;
+}
+
+/* Error state for date inputs */
+input[type="date"].error,
+input[type="date"][aria-invalid="true"] {
+  border-color: var(--semantic-error);
+}
+
+input[type="date"].error:focus,
+input[type="date"][aria-invalid="true"]:focus {
+  border-color: var(--semantic-error);
+}
+
+/* Disabled state */
+input[type="date"]:disabled {
+  background-color: var(--neutral-300);
+  color: var(--neutral-500);
+  cursor: not-allowed;
+}
+
+input[type="date"]:disabled::-webkit-calendar-picker-indicator {
+  cursor: not-allowed;
+  filter: opacity(0.3);
+}
+
+/* Dark color scheme for calendar popup (Chrome 93+) */
+@supports (color-scheme: light) {
+  input[type="date"] {
+    color-scheme: light;
+  }
+}
+
+/* iOS-specific date picker improvements */
+@supports (-webkit-touch-callout: none) {
+  input[type="date"] {
+    font-size: 16px !important; /* Prevent zoom on iOS */
+    min-height: 48px;
   }
 }

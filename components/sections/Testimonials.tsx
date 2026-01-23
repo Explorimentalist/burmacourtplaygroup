@@ -199,7 +199,7 @@ const Testimonials: React.FC = () => {
               {reviews.map((review, index) => (
                 <div
                   key={`review-${index}`}
-                  className="flex-shrink-0 bg-white p-6 flex flex-col gap-6 shadow-sm rounded-md border border-neutral-100 w-full max-w-sm md:max-w-md lg:max-w-lg max-h-[55vh] md:max-h-none"
+                  className="flex-shrink-0 bg-white p-6 flex flex-col gap-6 shadow-sm rounded-md border border-neutral-100 w-full max-w-sm md:max-w-md lg:max-w-lg"
                   style={{
                     backgroundColor: index % 2 === 0 ? '#ffffff' : '#fafafa'
                   }}
@@ -216,7 +216,7 @@ const Testimonials: React.FC = () => {
                     ))}
                   </div>
 
-                  <p className="font-sans text-16 font-regular text-neutral-600 flex-grow leading-relaxed overflow-y-auto min-h-0">
+                  <p className="font-sans text-12 md:text-16 font-regular text-neutral-600 flex-grow leading-relaxed overflow-y-auto min-h-0">
                     {review.text}
                   </p>
 

@@ -25,6 +25,12 @@ interface ContactFormProps {
   onSubmit?: (data: FormData) => Promise<void>
 }
 
+// Helper to get today's date in YYYY-MM-DD format for date input constraints
+const getTodayDate = (): string => {
+  const today = new Date()
+  return today.toISOString().split('T')[0]
+}
+
 const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
   const [currentStep, setCurrentStep] = useState(1)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -218,27 +224,50 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
         }
         
         // Data sanitization function to prevent template corruption
-        const sanitizeText = (text: string): string => {
-          return text
+        // Escapes curly braces which can break EmailJS template parsing
+        const sanitizeText = (text: string | undefined | null): string => {
+          if (!text) return ''
+          return String(text)
+            .replace(/\{/g, '&#123;') // Escape { to prevent template variable conflicts
+            .replace(/\}/g, '&#125;') // Escape } to prevent template variable conflicts
             .replace(/[<>]/g, '') // Remove HTML brackets
             .replace(/[\u0000-\u001F\u007F-\u009F]/g, '') // Remove control characters
             .trim()
         }
         
+        // Format date consistently to avoid locale-specific characters
+        const formatDate = (date: Date): string => {
+          const day = String(date.getDate()).padStart(2, '0')
+          const month = String(date.getMonth() + 1).padStart(2, '0')
+          const year = date.getFullYear()
+          const hours = String(date.getHours()).padStart(2, '0')
+          const minutes = String(date.getMinutes()).padStart(2, '0')
+          const seconds = String(date.getSeconds()).padStart(2, '0')
+          return `${day}/${month}/${year}, ${hours}:${minutes}:${seconds}`
+        }
+        
         // Prepare template parameters - matching EmailJS template variable names
-        const templateParams = {
+        // All parameters are sanitized to prevent template corruption
+        const bccEmail = import.meta.env.VITE_BCC_EMAIL // Optional BCC for testing/debugging
+        
+        const templateParams: Record<string, string> = {
           from_name: sanitizeText(formData.fullName),
           from_email: sanitizeText(formData.email),
           phone_number: sanitizeText(formData.phoneNumber),
-          reason_for_contacting: formData.reasonForContacting,
-          inquiry_type: formData.reasonForContacting === 'inscription' ? 'inscription enquiry' : 'general information',
-          child_name: formData.childName ? sanitizeText(formData.childName) : 'Not provided',
-          date_of_birth: formData.dateOfBirth || 'Not provided',
-          desired_start_date: formData.desiredStartDate || 'Not provided',
-          message: formData.message ? sanitizeText(formData.message) : 'No additional message',
-          how_did_you_hear: formData.howDidYouHear || 'Not specified',
-          submission_date: new Date().toLocaleString(),
-          to_email: import.meta.env.VITE_TARGET_EMAIL || 'brianoko@gmail.com'
+          reason_for_contacting: sanitizeText(formData.reasonForContacting),
+          inquiry_type: sanitizeText(formData.reasonForContacting === 'inscription' ? 'Inscription Enquiry' : 'General Information'),
+          child_name: formData.childName ? sanitizeText(formData.childName) : 'N/A',
+          date_of_birth: formData.dateOfBirth ? sanitizeText(formData.dateOfBirth) : 'N/A',
+          desired_start_date: formData.desiredStartDate ? sanitizeText(formData.desiredStartDate) : 'N/A',
+          message: formData.message ? sanitizeText(formData.message) : 'N/A',
+          how_did_you_hear: formData.howDidYouHear ? sanitizeText(formData.howDidYouHear) : 'N/A',
+          submission_date: sanitizeText(formatDate(new Date())),
+          to_email: sanitizeText(import.meta.env.VITE_TARGET_EMAIL || 'leighbcp@gmail.com')
+        }
+        
+        // Add BCC if configured (EmailJS supports bcc_email parameter)
+        if (bccEmail) {
+          templateParams.bcc_email = sanitizeText(bccEmail)
         }
         
         // Debug logging - remove in production
@@ -380,6 +409,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
               name="dateOfBirth"
               type="date"
               required
+              max={getTodayDate()}
               value={formData.dateOfBirth}
               error={errors.dateOfBirth}
               onChange={handleChange}
@@ -390,6 +420,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
               label="Desired start date"
               name="desiredStartDate"
               type="date"
+              min={getTodayDate()}
               value={formData.desiredStartDate}
               error={errors.desiredStartDate}
               onChange={handleChange}

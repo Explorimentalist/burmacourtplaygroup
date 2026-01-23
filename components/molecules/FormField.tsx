@@ -18,6 +18,8 @@ interface FormFieldProps {
   error?: string
   options?: SelectOption[]
   rows?: number
+  min?: string  // For date inputs: minimum selectable date (YYYY-MM-DD format)
+  max?: string  // For date inputs: maximum selectable date (YYYY-MM-DD format)
   onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => void
   onBlur?: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => void
   className?: string
@@ -36,6 +38,8 @@ const FormField = forwardRef<
   error,
   options = [],
   rows = 4,
+  min,
+  max,
   onChange,
   onBlur,
   className = ''
@@ -84,6 +88,8 @@ const FormField = forwardRef<
           <Input
             ref={ref as React.RefObject<HTMLInputElement>}
             type={type}
+            min={min}
+            max={max}
             {...commonProps}
           />
         )
