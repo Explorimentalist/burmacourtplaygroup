@@ -3,7 +3,7 @@ import React from 'react';
 interface TermsItemProps {
   /** Section heading text */
   heading: string;
-  /** Section content text */
+  /** Section content text - supports HTML for formatting */
   content: string;
   /** Optional custom CSS classes */
   className?: string;
@@ -16,7 +16,7 @@ interface TermsItemProps {
  * Following design system specifications:
  * - Display font for headings (32px)
  * - Body font for content (16px)
- * - Proper spacing using design tokens
+ * - Content supports HTML formatting (bold, line breaks, lists)
  */
 export const TermsItem: React.FC<TermsItemProps> = ({
   heading,
@@ -30,10 +30,11 @@ export const TermsItem: React.FC<TermsItemProps> = ({
         {heading}
       </h3>
       
-      {/* Section Content */}
-      <p className="font-body text-16 text-neutral-600 leading-21">
-        {content}
-      </p>
+      {/* Section Content - Renders HTML for formatting support */}
+      <div 
+        className="font-body text-16 text-neutral-600 leading-21 prose prose-neutral max-w-none"
+        dangerouslySetInnerHTML={{ __html: content }}
+      />
     </div>
   );
 };

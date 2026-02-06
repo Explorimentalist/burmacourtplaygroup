@@ -37,10 +37,13 @@ const KeyInfo: React.FC = () => {
             </h3>
             <div className="font-sans font-regular text-16 text-neutral-600 space-y-6">
               <p>
-                We provide care and education for children from the age of two to five years old.
+                We cater to a maximum of 16 children from the age of two through the end of the Early Years age group, ensuring an intimate and attentive setting.
               </p>
               <p>
-                Burma Court Playgroup is located in a Stoke Newington Victorian House – we emulate the experience of going to a friend’s home for a play date. Small, friendly and fun!
+                Our facility features exclusive use of the Mabel Thornton Community Hall and an adjoining outdoor playground with rubberised flooring, designed for safe exploration in all weather.
+              </p>
+              <p>
+                We think differently about education by following the Early Years Foundation Stage Curriculum through a balance of child-chosen play and adult-led group activities that build a child's ability to see tasks through to completion.
               </p>
             </div>
           </div>
@@ -63,11 +66,12 @@ const KeyInfo: React.FC = () => {
             </h3>
             <div className="font-sans font-regular text-16 text-neutral-600 space-y-6">
               <p>
-                We provide care and education for children from the age of two to five years old.
+                The playgroup is primarily funded by Nursery Education Grants, providing 15 or 30 funded hours depending on your child's age and status.
               </p>
               <p>
-                Burma Court Playgroup is located in a Stoke Newington Victorian House – we emulate the experience of going to a friend’s home for a play date. Small, friendly and fun!
+                For additional hours, fees are £8.75 per hour for two-year-olds and £6.75 per hour for three- and four-year-olds. We also support families through Tax-Free Childcare and funding via the Hackney Learning Trust for those on low incomes.
               </p>
+            
             </div>
           </div>
 
@@ -89,10 +93,10 @@ const KeyInfo: React.FC = () => {
             </h3>
             <div className="font-sans font-regular text-16 text-neutral-600 space-y-6">
               <p>
-                We provide care and education for children from the age of two to five years old.
+                Our sessions run during term time from 9am to 4pm, following the Hackney Learning Trust school calendar for approximately 39 weeks a year.
               </p>
               <p>
-                Burma Court Playgroup is located in a Stoke Newington Victorian House – we emulate the experience of going to a friend’s home for a play date. Small, friendly and fun!
+                Parents have the flexibility of a 12pm pick-up or a full-day stay that includes our lunch club, which carries a modest £6.75 fee. While we provide the structured learning and wet-weather gear, parents provide a nut-free packed lunch and snacks for their children.
               </p>
             </div>
           </div>

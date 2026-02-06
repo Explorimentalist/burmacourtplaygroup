@@ -92,7 +92,7 @@ const HomeHero: React.FC = () => {
         <div className="max-w-[1440px] mx-auto px-6 md:px-[80px] flex flex-col items-center">
           <div className="max-w-[856px] text-center">
             <p className="font-body font-light text-36 text-neutral-600 mb-12 px-4 sm:px-0 sm:text-24" style={{ fontFamily: 'Geist, sans-serif !important' }}>
-              We provide care and education for children from the age of two to five years old between. We emulate the experience of going to a friend's home for a play date in an intimate building off Green Lanes.
+            Burma Court Playgroup is a community-run sanctuary where parents directly manage and shape the daily environment. We offer a "special place" where the active commitment of our families drives the collective success of the group and the individual happiness of every child.
             </p>
             
             <Link 
