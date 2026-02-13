@@ -59,7 +59,7 @@ const HomeHero: React.FC = () => {
   return (
     <main className="min-h-screen w-full">
       {/* Header Section with Logo and Tagline */}
-      <div className="relative flex h-[50vh] items-center justify-center bg-neutral-200 overflow-hidden lg:mt-[120px] md:mt-20 mb-20 lg:mb-16 md:mb-16">
+      <div className="relative flex min-h-[50vh] items-center justify-center bg-neutral-200 overflow-hidden lg:mt-[120px] md:mt-20 mb-20 lg:mb-16 md:mb-16">
         {/* Radial spotlight */}
         <div
           aria-hidden="true"
