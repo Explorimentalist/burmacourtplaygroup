@@ -59,7 +59,7 @@ const HomeHero: React.FC = () => {
   return (
     <main className="min-h-screen w-full">
       {/* Header Section with Logo and Tagline */}
-      <div className="relative flex min-h-[50vh] items-center justify-center bg-neutral-200 overflow-hidden lg:mt-[120px] md:mt-20 mb-20 lg:mb-16 md:mb-16">
+      <div className="relative flex min-h-[50vh] items-center justify-center bg-neutral-200 overflow-hidden lg:mt-[120px] md:mt-20 mb-5 lg:mb-16 md:mb-16">
         {/* Radial spotlight */}
         <div
           aria-hidden="true"
@@ -91,7 +91,7 @@ const HomeHero: React.FC = () => {
       <div className="relative w-full bg-neutral-200 py-20 md:py-32">
         <div className="max-w-[1440px] mx-auto px-6 md:px-[80px] flex flex-col items-center">
           <div className="max-w-[856px] text-center">
-            <p className="font-body font-light text-36 text-neutral-600 mb-12 px-4 sm:px-0 sm:text-24" style={{ fontFamily: 'Geist, sans-serif !important' }}>
+            <p className="font-body font-light text-24 text-neutral-600 mb-12 px-4 sm:px-0 sm:text-36" style={{ fontFamily: 'Geist, sans-serif !important' }}>
             Burma Court Playgroup is a community-run sanctuary where parents directly manage and shape the daily environment. We offer a "special place" where the active commitment of our families drives the collective success of the group and the individual happiness of every child.
             </p>
             
