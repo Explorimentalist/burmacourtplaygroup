@@ -3,6 +3,8 @@ import emailjs from '@emailjs/browser'
 import Navbar from '../components/Navbar'
 import Contact from '../components/sections/Contact'
 import Footer from '../components/organisms/Footer'
+import { getStoredHomepageTestVariant } from '../lib/abTest'
+import { trackHomepageExperimentEvent } from '../lib/analytics'
 
 interface FormData {
   fullName: string
@@ -61,6 +63,10 @@ const ContactPage: React.FC = () => {
       )
 
       if (response.status === 200) {
+        const variant = getStoredHomepageTestVariant()
+        if (variant) {
+          trackHomepageExperimentEvent('contact_form_submit', variant)
+        }
         alert('Thank you for your message! We will get back to you soon.')
         console.log('Email sent successfully:', response)
       } else {

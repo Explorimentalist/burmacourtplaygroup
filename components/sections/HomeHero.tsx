@@ -2,11 +2,19 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
+import { Star } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { ZoomParallax } from "../ui/zoom-parallax";
 import AnimatedLogo from "../AnimatedLogo";
 
-const HomeHero: React.FC = () => {
+type HomeHeroVariant = 'A' | 'B';
+
+interface HomeHeroProps {
+  variant?: HomeHeroVariant;
+  onPrimaryCtaClick?: () => void;
+}
+
+const HomeHero: React.FC<HomeHeroProps> = ({ variant = 'A', onPrimaryCtaClick }) => {
   const taglineRef = useRef<HTMLParagraphElement>(null);
 
   const images = [
@@ -81,6 +89,29 @@ const HomeHero: React.FC = () => {
           >
             Learning through play.
           </p>
+          {variant === 'B' && (
+            <div className="mt-8 w-[92vw] max-w-[560px] bg-white p-6 flex flex-col gap-4 shadow-sm rounded-md border border-neutral-100">
+              <div className="flex gap-2 items-center">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={`hero-star-${i}`}
+                    size={24}
+                    fill="#F6BE28"
+                    stroke="#45403B"
+                    strokeWidth={1.5}
+                  />
+                ))}
+              </div>
+              <p className="font-sans text-12 md:text-16 font-regular text-neutral-600 leading-relaxed">
+                “A genuinely nurturing place. Our child settled quickly, grew in confidence, and absolutely loves each session.”
+              </p>
+              <div className="flex flex-col items-end gap-2">
+                <span className="font-sans text-12 font-medium text-neutral-600 text-right w-full tracking-wide">
+                  Burma Court Parent
+                </span>
+              </div>
+            </div>
+          )}
         </div>
       </div>
       
@@ -97,6 +128,7 @@ const HomeHero: React.FC = () => {
             
             <Link 
               to="/contact"
+              onClick={onPrimaryCtaClick}
               className="bg-primary-500 hover:bg-primary-600 active:bg-primary-700 text-neutral-50 px-6 py-4 md:px-[24px] md:py-[20px] rounded-[4px] inline-flex items-center justify-center transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-primary-200 shadow-sm"
             >
               <span className="text-[18px] md:text-[20px] leading-tight font-medium">Get in touch</span>
