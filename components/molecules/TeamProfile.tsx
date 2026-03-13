@@ -1,3 +1,6 @@
+import { useRef, useState } from 'react'
+import type { CSSProperties, PointerEvent } from 'react'
+
 interface TeamProfileProps {
   imageBase: string
   hoverImageBase?: string
@@ -23,9 +26,42 @@ export default function TeamProfile({
   showDescription = false,
   className = ''
 }: TeamProfileProps) {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [spotActive, setSpotActive] = useState(false)
+
+  const updateSpot = (event: PointerEvent<HTMLDivElement>) => {
+    if (!containerRef.current) return
+    const rect = containerRef.current.getBoundingClientRect()
+    const x = ((event.clientX - rect.left) / rect.width) * 100
+    const y = ((event.clientY - rect.top) / rect.height) * 100
+    containerRef.current.style.setProperty('--spot-x', `${x}%`)
+    containerRef.current.style.setProperty('--spot-y', `${y}%`)
+  }
+
   return (
     <div className={`flex flex-col gap-6 ${className}`}>
-      <div className="relative w-full aspect-square overflow-hidden group">
+      <div
+        ref={containerRef}
+        className="relative w-full aspect-square overflow-hidden group"
+        data-spot-active={spotActive}
+        onPointerEnter={(event) => {
+          setSpotActive(true)
+          updateSpot(event)
+        }}
+        onPointerMove={updateSpot}
+        onPointerLeave={() => setSpotActive(false)}
+        onPointerDown={(event) => {
+          setSpotActive(true)
+          updateSpot(event)
+        }}
+        onPointerUp={() => setSpotActive(false)}
+        onPointerCancel={() => setSpotActive(false)}
+        style={{
+          '--spot-x': '50%',
+          '--spot-y': '50%',
+          '--spot-size': '80px'
+        } as CSSProperties}
+      >
         <picture>
           <source
             type="image/avif"
@@ -42,8 +78,9 @@ export default function TeamProfile({
             srcSet={buildSrcSet(imageBase, 'jpg')}
             sizes={imageSizes}
             alt={`${name} - ${role}`}
-            className="w-full h-full object-cover transition-opacity duration-normal group-hover:opacity-0"
+            className="w-full h-full object-cover"
             loading="lazy"
+            draggable={false}
           />
         </picture>
 
@@ -65,8 +102,17 @@ export default function TeamProfile({
               sizes={imageSizes}
               alt=""
               aria-hidden="true"
-              className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-normal group-hover:opacity-100"
+              className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-fast pointer-events-none group-data-[spot-active=true]:opacity-100"
+              style={{
+                WebkitMaskImage:
+                  'radial-gradient(circle var(--spot-size) at var(--spot-x) var(--spot-y), rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0) 100%)',
+                maskImage:
+                  'radial-gradient(circle var(--spot-size) at var(--spot-x) var(--spot-y), rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0) 100%)',
+                WebkitMaskRepeat: 'no-repeat',
+                maskRepeat: 'no-repeat'
+              }}
               loading="lazy"
+              draggable={false}
             />
           </picture>
         )}
