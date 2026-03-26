@@ -26,10 +26,9 @@ const Home: React.FC = () => {
       return;
     }
 
-    const section = document.getElementById('key-info');
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    setTimeout(() => {
+      document.getElementById('key-info')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 300);
   }, [location.hash]);
 
   const handlePrimaryCtaClick = () => {

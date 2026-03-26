@@ -1,13 +1,25 @@
 
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { cn } from '../lib/utils';
 
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleKeyInfoClick = (e: React.MouseEvent, closeMenu?: () => void) => {
+    closeMenu?.();
+    if (location.pathname === '/') {
+      e.preventDefault();
+      document.getElementById('key-info')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      e.preventDefault();
+      navigate('/#key-info');
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -72,6 +84,7 @@ const Navbar: React.FC = () => {
             <div className="w-1/3 flex justify-start items-center">
               <Link
                 to="/#key-info"
+                onClick={handleKeyInfoClick}
                 className="font-sans text-[16px] leading-[21px] text-neutral-800 hover:text-primary-500 active:text-primary-700 transition-colors duration-200"
               >
                 Key info
@@ -146,7 +159,7 @@ const Navbar: React.FC = () => {
               <div className="flex flex-col gap-6 items-center text-center">
                 <Link
                   to="/#key-info"
-                  onClick={toggleMobileMenu}
+                  onClick={(e) => handleKeyInfoClick(e, toggleMobileMenu)}
                   className="font-body text-24 font-regular text-neutral-800 hover:text-primary-500 active:text-primary-700 transition-colors duration-200"
                 >
                   Key info
