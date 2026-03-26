@@ -119,7 +119,7 @@ const HomeHero: React.FC<HomeHeroProps> = ({ variant = 'A', onPrimaryCtaClick })
       <ZoomParallax images={images} />
       
       {/* Bottom Section with Intro Text */}
-      <div className="relative w-full bg-neutral-200 py-20 md:py-32">
+      <div className="relative w-full bg-neutral-200 py-20 md:pt-0 md:pb-32">
         <div className="max-w-[1440px] mx-auto px-6 md:px-[80px] flex flex-col items-center">
           <div className="max-w-[856px] text-center">
             <p className="font-body font-light text-24 text-neutral-600 mb-12 px-4 sm:px-0 sm:text-36" style={{ fontFamily: 'Geist, sans-serif !important' }}>

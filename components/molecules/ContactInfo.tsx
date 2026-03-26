@@ -13,7 +13,7 @@ const ContactInfo: React.FC<ContactInfoProps> = ({
 }) => {
   return (
     <div className={`flex flex-col ${className}`}>
-      <div className="grid grid-cols-2 gap-10 lg:grid-cols-1 lg:gap-6">
+      <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-1 lg:gap-6">
         <div className="flex flex-col gap-4 min-w-0">
           <h2 className="font-display text-32 leading-40 text-neutral-800">
             Email or call

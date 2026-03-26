@@ -28,7 +28,7 @@ export default function History({ className = '' }: HistoryProps) {
             <img
               src="/images/history/entrance.png"
               alt="Charming Victorian playgroup building exterior with brick facade and colorful children's area"
-              className="w-full h-full object-cover brand-rotation"
+              className="w-full h-full object-cover"
               loading="lazy"
             />
           </div>

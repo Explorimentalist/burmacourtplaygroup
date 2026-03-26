@@ -21,6 +21,17 @@ const Home: React.FC = () => {
     trackHomepageExperimentEvent('homepage_view', assignment.variant);
   }, [assignment.variant, assignment.source]);
 
+  useEffect(() => {
+    if (location.hash !== '#key-info') {
+      return;
+    }
+
+    const section = document.getElementById('key-info');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [location.hash]);
+
   const handlePrimaryCtaClick = () => {
     trackHomepageExperimentEvent('cta_click', assignment.variant);
   };

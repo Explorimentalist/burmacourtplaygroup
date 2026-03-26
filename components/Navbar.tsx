@@ -1,11 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { cn } from '../lib/utils';
 
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,13 +17,24 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
+
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location.pathname, location.hash]);
+
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   return (
     <>
-      <nav 
+      <nav
         className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ease-in-out bg-white ${isScrolled ? 'shadow-md' : ''}`}
         aria-label="Main Navigation"
       >
@@ -52,16 +65,16 @@ const Navbar: React.FC = () => {
             </button>
           </div>
 
-          {/* Desktop Layout: About Left, Logo Center, CTA Right */}
+          {/* Desktop Layout: key info left, logo center, about + CTA right */}
           <div className="hidden md:flex w-full items-center justify-between">
             
-            {/* Left Item: About */}
-            <div className="w-1/3 flex justify-start">
-              <Link 
-                to="/about" 
+            {/* Left Item: Key info */}
+            <div className="w-1/3 flex justify-start items-center">
+              <Link
+                to="/#key-info"
                 className="font-sans text-[16px] leading-[21px] text-neutral-800 hover:text-primary-500 active:text-primary-700 transition-colors duration-200"
               >
-                About
+                Key info
               </Link>
             </div>
 
@@ -82,9 +95,15 @@ const Navbar: React.FC = () => {
               </Link>
             </div>
 
-            {/* Right Item: Small CTA Button */}
-            <div className="w-1/3 flex justify-end">
+            {/* Right Items: About + CTA */}
+            <div className="w-1/3 flex justify-end items-center gap-8">
               <Link 
+                to="/about" 
+                className="font-sans text-[16px] leading-[21px] text-neutral-800 hover:text-primary-500 active:text-primary-700 transition-colors duration-200"
+              >
+                About
+              </Link>
+              <Link
                 to="/contact"
                 className="bg-primary-500 hover:bg-primary-600 active:bg-primary-700 text-neutral-50 px-3 py-2 rounded-[4px] flex items-center justify-center transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-primary-200 shadow-sm"
               >
@@ -104,36 +123,48 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Full Screen Menu Content */}
         <div
-          className={`fixed inset-0 bg-neutral-200 z-[100] transition-transform duration-300 ease-in-out md:hidden mobile-menu-closed
-            ${isMobileMenuOpen ? 'translate-x-0' : ''}
-          `}
+          className={cn(
+            "fixed inset-0 w-screen max-w-[100vw] h-[100svh] max-h-[100svh] bg-neutral-200 z-[100] transition-transform duration-300 ease-in-out md:hidden overflow-x-hidden overflow-y-auto",
+            isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          )}
+          aria-hidden={!isMobileMenuOpen}
         >
-          <div className="flex flex-col h-full">
+          <div className="flex flex-col h-full px-6 pb-8 pt-6">
             {/* Close button - top right */}
-            <div className="p-6 flex justify-end">
-              <button onClick={toggleMobileMenu} className="p-2 text-neutral-800 hover:text-primary-500 transition-colors">
+            <div className="flex justify-end">
+              <button
+                onClick={toggleMobileMenu}
+                className="p-2 text-neutral-800 hover:text-primary-500 transition-colors"
+                aria-label="Close menu"
+              >
                 <X size={28} />
               </button>
             </div>
-            
-            {/* Centered navigation links */}
-            <div className="flex-1 flex flex-col justify-center items-center px-8">
-              <div className="flex flex-col gap-8 text-center">
+
+            {/* Centered vertical mobile navigation */}
+            <div className="flex-1 w-full flex items-center justify-center">
+              <div className="flex flex-col gap-6 items-center text-center">
                 <Link
-                  to="/about"
+                  to="/#key-info"
                   onClick={toggleMobileMenu}
                   className="font-body text-24 font-regular text-neutral-800 hover:text-primary-500 active:text-primary-700 transition-colors duration-200"
+                >
+                  Key info
+                </Link>
+                <Link
+                  to="/about"
+                  className="font-body text-24 font-regular text-neutral-800 hover:text-primary-500 active:text-primary-700 transition-colors duration-200"
+                  onClick={toggleMobileMenu}
                 >
                   About
                 </Link>
               </div>
             </div>
 
-            {/* Bottom button - using design system md button specs */}
-            <div className="p-6 pb-8">
+            <div className="w-full mt-auto">
               <Link
                 to="/contact"
-                className="font-body bg-primary-500 hover:bg-primary-600 active:bg-primary-700 text-neutral-50 py-3 px-5 rounded-sm text-16 font-medium shadow-sm active:scale-95 transition-all duration-200 w-full flex items-center justify-center gap-2 focus:outline-none focus:ring-4 focus:ring-primary-200"
+                className="font-body bg-primary-500 hover:bg-primary-600 active:bg-primary-700 text-neutral-50 py-3 px-5 rounded-sm text-16 font-medium shadow-sm active:scale-95 transition-all duration-200 flex items-center justify-center gap-2 focus:outline-none focus:ring-4 focus:ring-primary-200 w-full max-w-full"
                 onClick={toggleMobileMenu}
               >
                 Get in touch

@@ -11,7 +11,7 @@ const KeyInfo: React.FC = () => {
     setRotations(newRotations);
   };
   return (
-    <section className="bg-secondary-500 pt-20 pb-20 px-6 md:px-20">
+    <section id="key-info" className="bg-secondary-500 pt-20 pb-20 px-6 md:px-20 scroll-mt-[64px] md:scroll-mt-[96px]">
       <div className="max-w-[1440px] mx-auto">
         <h2 className="font-display text-48 text-neutral-800 mb-12 ml-0 md:ml-2">
           Key info
