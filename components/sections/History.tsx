@@ -26,7 +26,7 @@ export default function History({ className = '' }: HistoryProps) {
         <div className="col-span-4 md:col-span-8 lg:col-span-12 mb-8 lg:mb-16">
           <div className="relative h-[400px] lg:h-[749px] w-full">
             <img
-              src="/images/history/Burma-Court-2026-edtaylor.co.uk-6483.jpg"
+              src="/images/history/Burma-Court-2026-edtaylor.co.uk-6494.jpg"
               alt="Charming Victorian playgroup building exterior with brick facade and colorful children's area"
               className="w-full h-full object-cover"
               loading="lazy"
